@@ -13,6 +13,7 @@
 \usepackage{caption}
 \usepackage{amsthm}
 \usepackage{url}
+
 \tcbuselibrary{breakable}
 \geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
 
@@ -59,8 +60,9 @@
 \end{tcolorbox}
 
 
+%======================== DESCRIPCION DE LA BASE DE DATOS ====================
 
-\section*{Descripción de la base de datos}
+\section{Descripción de la base de datos}
 
 El conjunto de datos está organizado en un \texttt{DataFrame} con \textbf{415 observaciones} (filas) y \textbf{26 variables} (columnas).
 Contiene información sobre sitios de muestreo de árboles en Europa y sus registros isotópicos ($\delta^{13}C$) a lo largo de varios años.
@@ -68,43 +70,100 @@ Los valores faltantes se indican como \texttt{NA}.
 
 \subsection*{Estructura de las variables}
 
-\begin{table}[H]
+Estadisticas basicas
+\begin{table}[ht]
     \centering
-    \caption{Estructura del DataFrame (\texttt{df.info()})}
-    \label{tab:info}
-    \begin{tabular}{|r|l|r|l|}
+    \caption{Estadísticas descriptivas de los datos}
+    \label{tab:estadisticas_basicas}
+    \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \# & Variable & Valores no nulos & Tipo de dato \\
+        & count & unique & top & freq \\
         \hline
-        0   & Site Code & 415 & object \\
-        1   & BRO       & 111 & object \\
-        2   & CAV       & 374 & object \\
-        3   & CAZ       & 412 & object \\
-        4   & COL       & 289 & object \\
-        5   & DRA       & 235 & object \\
-        6   & FON       & 292 & object \\
-        7   & GUT       & 412 & object \\
-        8   & ILO       & 412 & object \\
-        9   & INA       & 412 & object \\
-        10  & AHI       & 293 & object \\
-        11  & LAI       & 201 & object \\
-        12  & LIL       & 408 & object \\
-        13  & LOC       & 264 & object \\
-        14  & NIE1      & 413 & object \\
-        15  & NIE2      & 413 & object \\
-        16  & PAN       & 412 & object \\
-        17  & PED       & 410 & object \\
-        18  & POE       & 412 & object \\
-        19  & REN       & 376 & object \\
-        20  & SER       & 409 & object \\
-        21  & SUW       & 414 & object \\
-        22  & VIG       & 337 & object \\
-        23  & VIN       & 159 & object \\
-        24  & WIN       & 244 & object \\
-        25  & WOB       & 408 & object \\
+        Site Code & 415 & 415 & Site  name & 1 \\
+        BRO & 111 & 38 & -25,5 & 10 \\
+        CAV  & 374 & 39 & -24,2 & 38 \\
+        CAZ  & 412 & 41 & -20,7 & 35 \\
+        COL    & 289 & 31 & -21,0 & 37 \\
+        DRA  & 235 & 50 & -23,8 & 18 \\
+        FON  & 292 & 148 & -24,20 & 7 \\
+        GUT  & 412 & 193 & -23,07 & 6 \\
+        ILO & 412 & 45 & -23,4 & 36 \\
+        INA  & 412 & 40 & -24,7 & 34 \\
+        AHI & 293 & 53 & -24,3 & 21 \\
+        LAI  & 201 & 45 & -25,5 & 13 \\
+        LIL & 408 & 47 & -21,9 & 23 \\
+        LOC  & 264 & 41 & -26,6 & 21 \\
+        NIE1 & 413 & 258 & NA  & 27 \\
+        NIE2 & 413 & 50 & -23,1 & 32 \\
+        PAN  & 412 & 118 & NA  & 216 \\
+        PED  & 410 & 187 & -21,77 & 6 \\
+        POE  & 412 & 55 & -23,4 & 24 \\
+        REN  & 376 & 235 & -25,34 & 5 \\
+        SER & 409 & 46 & -22,0 & 34 \\
+        SUW  & 414 & 49 & -23,3 & 22 \\
+        VIG  & 337 & 40 & -23,2 & 30 \\
+        VIN  & 159 & 46 & -22,4 & 15 \\
+        WIN & 244 & 40 & -23,1 & 21 \\
+        WOB  & 408 & 54 & -25,6 & 27 \\
         \hline
     \end{tabular}
 \end{table}
+
+%===============================================================================
+
+\begin{table}[ht]
+    \centering
+    \caption{Tipos de datos, valores no nulos y faltantes por columna}
+    \label{tab:info_datos}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        Columna & Tipo & No nulos & Valores faltantes & Porcentaje faltante \\
+        \hline
+        Site Code & object & 415 & 0 & 0.000000 \\
+        BRO & object & 111 & 304 & 73.253012 \\
+        CAV  & object & 374 & 41 & 9.879518 \\
+        CAZ  & object & 412 & 3 & 0.722892 \\
+        COL    & object & 289 & 126 & 30.361446 \\
+        DRA  & object & 235 & 180 & 43.373494 \\
+        FON  & object & 292 & 123 & 29.638554 \\
+        GUT  & object & 412 & 3 & 0.722892 \\
+        ILO & object & 412 & 3 & 0.722892 \\
+        INA  & object & 412 & 3 & 0.722892 \\
+        AHI & object & 293 & 122 & 29.397590 \\
+        LAI  & object & 201 & 214 & 51.566265 \\
+        LIL & object & 408 & 7 & 1.686747 \\
+        LOC  & object & 264 & 151 & 36.385542 \\
+        NIE1 & object & 413 & 2 & 0.481928 \\
+        NIE2 & object & 413 & 2 & 0.481928 \\
+        PAN  & object & 412 & 3 & 0.722892 \\
+        PED  & object & 410 & 5 & 1.204819 \\
+        POE  & object & 412 & 3 & 0.722892 \\
+        REN  & object & 376 & 39 & 9.397590 \\
+        SER & object & 409 & 6 & 1.445783 \\
+        SUW  & object & 414 & 1 & 0.240964 \\
+        VIG  & object & 337 & 78 & 18.795181 \\
+        VIN  & object & 159 & 256 & 61.686747 \\
+        WIN & object & 244 & 171 & 41.204819 \\
+        WOB  & object & 408 & 7 & 1.686747 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+\subsection*{Valores Faltantes}
+
+Mostramos una grafica de como se distribuyen los datos faltantes en la tabla. Cada casilla en blanco indica que es un valor faltante (NaN).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/faltantes}
+	\caption{Mapa de color - Datos faltantes}
+	\label{fig:faltantes}
+\end{figure}
+
+En la grafica podemos identificar patrones que sugieren que la medición de los datos en ciertas variables falló de manera continua por ciertos periodos, mientras que en otras variables los datos faltantes parecen seguir otra distribución, y finalmente encontramos variables en las cuales los datos faltantes son muy pocos o ninguno.
 
 
 \subsection*{Clasificación de las variables según su escala de medición}
@@ -121,6 +180,5 @@ A continuación se presenta la clasificación de cada variable de la base de dat
     \item Continuara...
 
 \end{itemize}
-
 
 \end{document}
