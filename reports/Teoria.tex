@@ -47,57 +47,57 @@
 \begin{document}
 
 \begin{tcolorbox}[colback=gray!10, colframe=black, boxrule=0.5pt, arc=5pt, boxsep=5pt]
-\begin{tabularx}{\linewidth}{X r}
-  \begin{tabular}[t]{@{}l@{}}
-    \textbf{Introducción a la Ciencia de Datos} \\
-    \textbf{Tarea I}
-  \end{tabular}
-  &\textbf{Antonio Barragán}\\
-  &\textbf{Hazel Sánchez}\\
-   & \textbf{Omar García Ramos} \\
-\end{tabularx}
+    \begin{tabularx}{\linewidth}{X r}
+        \begin{tabular}[t]{@{}l@{}}
+            \textbf{Introducción a la Ciencia de Datos} \\
+            \textbf{Tarea I}
+        \end{tabular}
+         & \textbf{Antonio Barragán}  \\
+         & \textbf{Hazel Sánchez}     \\
+         & \textbf{Omar García Ramos} \\
+    \end{tabularx}
 \end{tcolorbox}
 
 \begin{ejercicio}{1}
-Demuestre que la matriz
+    Demuestre que la matriz
 
-$H = X(X^{T}X)^{-1}X^{T}$
+    $H = X(X^{T}X)^{-1}X^{T}$
 
-es idempotente y simétrica. Explique por qué estas propiedades son fundamentales para
-la interpretación de los leverages.
+    es idempotente y simétrica. Explique por qué estas propiedades son fundamentales para
+    la interpretación de los leverages.
 \end{ejercicio}
 \begin{demostracion} {Demostración:}
-Dada  la matriz $X_{n\times p} $ de rango completo, tenemos que:
-\begin{align*}
-    H^2&=\left(X(X^\top X)^{-1}X^\top\right)\left(X(X^\top X)^{-1}X^\top\right) \\
-    &=X\left((X^\top X)^{-1}X^\top X\right)(X^\top X)^{-1}X^\top\\
-    &=X (X^\top X)^{-1}X^\top=H
-\end{align*}
-Por lo tanto es idempotente.\\
-Por otro lado tenemos que:
-\begin{align*}
-    H^\top&=\left(X (X^\top X)^{-1 }X^\top \right)^\top\\
-    &=(X^\top)^\top\left((X^\top X)^{-1}\right)^\top X^\top\\
-    &=X(X^\top X)^{-1}X^\top
-\end{align*}
-Los elementos de la diagonal $h_{i}=H_{ii} $, denominados \textit{leverages}, son la influencia de la $i^{th} $ observación, las cuales están entre $[0,1]$  pues dado que es idempotente, $H^2=H$, así:
-\begin{align*}
-    h_{ii}=H^2_{ii}\implies h_{ii}=\sum_{j}h_{ij}h_{ji}
-\end{align*}
-Pero como es simétrica:
-\begin{align*}
-h_{ii}=h_{ii}^2+\sum_{j\not=i}h_{ji}^2\implies h_{ii}\geq h_{ii}^2
-\end{align*}
-De esta manera se tiene que podemos medir la influencia de las observaciones 
+    Dada  la matriz $X_{n\times p} $ de rango completo, tenemos que:
+    \begin{align*}
+        H^2 & =\left(X(X^\top X)^{-1}X^\top\right)\left(X(X^\top X)^{-1}X^\top\right) \\
+            & =X\left((X^\top X)^{-1}X^\top X\right)(X^\top X)^{-1}X^\top             \\
+            & =X (X^\top X)^{-1}X^\top=H
+    \end{align*}
+    Por lo tanto es idempotente.\\
+    Por otro lado tenemos que:
+    \begin{align*}
+        H^\top & =\left(X (X^\top X)^{-1 }X^\top \right)^\top           \\
+               & =(X^\top)^\top\left((X^\top X)^{-1}\right)^\top X^\top \\
+               & =X(X^\top X)^{-1}X^\top
+    \end{align*}
+    Los elementos de la diagonal $h_{i}=H_{ii} $, denominados \textit{leverages}, son la influencia de la $i^{th} $ observación, las cuales están entre $[0,1]$  pues dado que es idempotente, $H^2=H$, así:
+    \begin{align*}
+        h_{ii}=H^2_{ii}\implies h_{ii}=\sum_{j}h_{ij}h_{ji}
+    \end{align*}
+    Pero como es simétrica:
+    \begin{align*}
+        h_{ii}=h_{ii}^2+\sum_{j\not=i}h_{ji}^2\implies h_{ii}\geq h_{ii}^2
+    \end{align*}
+    De esta manera se tiene que podemos medir la influencia de las observaciones
 \end{demostracion}
 \newpage
 \begin{ejercicio}{2}
-Muestre que para un modelo lineal con $n$ observaciones y $p$ parámetros se cumple
+    Muestre que para un modelo lineal con $n$ observaciones y $p$ parámetros se cumple
 
-$\sum_{i=1}^{n} h_{ii} = p$.
+    $\sum_{i=1}^{n} h_{ii} = p$.
 
-Interprete este resultado en términos del "número efectivo de parámetros" y discuta su
-relación con el sobreajuste.
+    Interprete este resultado en términos del "número efectivo de parámetros" y discuta su
+    relación con el sobreajuste.
 \end{ejercicio}
 \begin{demostracion}{Demostración:}
     Dada la matriz $H$ de $n$ observaciones y $p$ parametros, tenemos que:
@@ -105,279 +105,279 @@ relación con el sobreajuste.
         tr(H)=\sum_{i=i}^n h_{ii}
     \end{align}
     Por otro lado, dadas la propiedades cíclicas de la traza de matrices y si $X$ es de rango $p$, entonces
- \begin{align}
-         tr(H)=tr(X(X^\top X)^{-1}X^\top )=tr((X^\top X)^{-1}X^\top X )=tr(\mathbf{I}_p)=p
- \end{align}
- Por lo tanto de $(1)$ y $(2)$, se tiene que:
- \[
- \sum_{i=1}^n h_{ii}=p
- \]
-La suma total $\sum h_{ii} = p$ indica que el modelo utiliza  sus $p$ parámetros para ajustar las $n$ observaciones,  por lo tanto valores de $h_{ii}$ cercanos a 1 significan que casi un parámetro completo se dedica a ajustar esa observación particular y hará que la recta ajuste a este punto alejándose del resto de observaciones menos influyentes.
+    \begin{align}
+        tr(H)=tr(X(X^\top X)^{-1}X^\top )=tr((X^\top X)^{-1}X^\top X )=tr(\mathbf{I}_p)=p
+    \end{align}
+    Por lo tanto de $(1)$ y $(2)$, se tiene que:
+    \[
+        \sum_{i=1}^n h_{ii}=p
+    \]
+    La suma total $\sum h_{ii} = p$ indica que el modelo utiliza  sus $p$ parámetros para ajustar las $n$ observaciones,  por lo tanto valores de $h_{ii}$ cercanos a 1 significan que casi un parámetro completo se dedica a ajustar esa observación particular y hará que la recta ajuste a este punto alejándose del resto de observaciones menos influyentes.
 
-\
+    \
 \end{demostracion}
 \newpage
 \begin{ejercicio}{3}
-Distribución de los residuos estandarizados.
-Bajo el modelo lineal clásico con errores normales, demuestre que los residuos estandarizados
+    Distribución de los residuos estandarizados.
+    Bajo el modelo lineal clásico con errores normales, demuestre que los residuos estandarizados
 
-$r_i = \frac{e_i}{\hat{\sigma}\sqrt{1 - h_{ii}}}$
+    $r_i = \frac{e_i}{\hat{\sigma}\sqrt{1 - h_{ii}}}$
 
-tienen, aproximadamente, distribución $t$ de Student con $n - p - 1$ grados de libertad.
-Explique cómo esta propiedad justifica su uso en la detección de outliers.
+    tienen, aproximadamente, distribución $t$ de Student con $n - p - 1$ grados de libertad.
+    Explique cómo esta propiedad justifica su uso en la detección de outliers.
 \end{ejercicio}
 \begin{demostracion}{Demostración}
-Dado el modelo de regresión lineal,tenemos que para $p$ covariables y $n$ observaciones
-\[
-Y=X\beta+\epsilon\quad \epsilon\sim N_n(0, \sigma^2I_n)
-\]
-Así los residuales:
-\[
-\mathbf{e}=(I_n-H)Y\sim N_n(0, (I_n-P)\sigma^2)
-\]
-Ya que es una transformación lineal de $Y$ y además:
-\begin{align*}
-    \mathbb{E}[\mathbf{e}]&=(I_n-P)\mathbf{E}[Y]=0\\
-    \mathbb{V}[e]&=(I_n-P)\mathbb{V}[Y](I_n-P)^\top=(I_n-P)\sigma^2
-\end{align*}
-Tiene una distribución normal multivariada ya que son una transformación lineal de $Y$ con parametros:
-\[
-\mathbb{E}[\mathbf{e}]=
-(I_n-H)\mathbb{E}[Y]=(I_n-H)
-\mathbb{E}[Y]=0
-\]
-Dado que la varianza $(\sigma^2)$, no es conocida usaremos el estimador de máxima verosimilitud insesgado para $\sigma^2$:
-\begin{align*}
-    \hat{\sigma^2}&=\dfrac{1}{n}(Y-X\hat{\beta})^\top(Y-X\hat{\beta})\\
-    &=\dfrac{1}{n}Y^\top(I_n-H)Y\\
-    &=\dfrac{n-p}{n}S^2, \quad\quad S^2\sim \chi^2_{n-p}
-\end{align*}
-Por lo tanto dado que para $\gamma\in \mathbb{R}^p$
-\[
-\gamma^\top \mathbf{e}\sim N(\gamma^\top 0, \gamma^\top (I_n-H)\gamma\sigma^2)
-\]
-Tomando la base canonica, tenemos que:
-\[
-\mathbf{e}=(e_1,..,e_n)\quad e_i\sim N(0, (1-h_{ii} )\sigma^2)
-\]
-De esta manera definimos a:
-\begin{align*}
-    Z&=\dfrac{e_i}{\sqrt{1-h_{ii} }\sigma}\sim N(0,1)\\
-    S^2&=\frac{n}{n-p}\hat{\sigma}^2\sim \chi^2_{n-p}
-\end{align*}
+    Dado el modelo de regresión lineal,tenemos que para $p$ covariables y $n$ observaciones
+    \[
+        Y=X\beta+\epsilon\quad \epsilon\sim N_n(0, \sigma^2I_n)
+    \]
+    Así los residuales:
+    \[
+        \mathbf{e}=(I_n-H)Y\sim N_n(0, (I_n-P)\sigma^2)
+    \]
+    Ya que es una transformación lineal de $Y$ y además:
+    \begin{align*}
+        \mathbb{E}[\mathbf{e}] & =(I_n-P)\mathbf{E}[Y]=0                           \\
+        \mathbb{V}[e]          & =(I_n-P)\mathbb{V}[Y](I_n-P)^\top=(I_n-P)\sigma^2
+    \end{align*}
+    Tiene una distribución normal multivariada ya que son una transformación lineal de $Y$ con parametros:
+    \[
+        \mathbb{E}[\mathbf{e}]=
+        (I_n-H)\mathbb{E}[Y]=(I_n-H)
+        \mathbb{E}[Y]=0
+    \]
+    Dado que la varianza $(\sigma^2)$, no es conocida usaremos el estimador de máxima verosimilitud insesgado para $\sigma^2$:
+    \begin{align*}
+        \hat{\sigma^2} & =\dfrac{1}{n}(Y-X\hat{\beta})^\top(Y-X\hat{\beta})  \\
+                       & =\dfrac{1}{n}Y^\top(I_n-H)Y                         \\
+                       & =\dfrac{n-p}{n}S^2, \quad\quad S^2\sim \chi^2_{n-p}
+    \end{align*}
+    Por lo tanto dado que para $\gamma\in \mathbb{R}^p$
+    \[
+        \gamma^\top \mathbf{e}\sim N(\gamma^\top 0, \gamma^\top (I_n-H)\gamma\sigma^2)
+    \]
+    Tomando la base canonica, tenemos que:
+    \[
+        \mathbf{e}=(e_1,..,e_n)\quad e_i\sim N(0, (1-h_{ii} )\sigma^2)
+    \]
+    De esta manera definimos a:
+    \begin{align*}
+        Z   & =\dfrac{e_i}{\sqrt{1-h_{ii} }\sigma}\sim N(0,1) \\
+        S^2 & =\frac{n}{n-p}\hat{\sigma}^2\sim \chi^2_{n-p}
+    \end{align*}
 \end{demostracion}
 
 \newpage
 \begin{ejercicio}{4}
-Factorización bajo MCAR.
-Partiendo de la definición de MCAR, pruebe formalmente que
+    Factorización bajo MCAR.
+    Partiendo de la definición de MCAR, pruebe formalmente que
 
-$p(Y, R | \theta, \psi) = p(Y | \theta) p(R | \psi)$.
+    $p(Y, R | \theta, \psi) = p(Y | \theta) p(R | \psi)$.
 
-Concluya por qué en este caso el mecanismo de faltantes es ignorable para la inferencia
-sobre $\theta$.
+    Concluya por qué en este caso el mecanismo de faltantes es ignorable para la inferencia
+    sobre $\theta$.
 \end{ejercicio}
 \begin{demostracion}{Demostración:}
-Bajo la suposición \textbf{MCAR}, sean:
-\begin{enumerate}
-    \item $Y=(Y_{obs},Y_{mis} )$ los datos (faltantes y observados)
-    \item $R$ el patrón de faltantes, es decir la matriz indicadora de faltantes.
-    \item $\theta$ nuestro vector de parámetros del modelo de datos.
-    \item $\psi$ el vector de parámetros del mecanismo de faltantes.
-\end{enumerate}
+    Bajo la suposición \textbf{MCAR}, sean:
+    \begin{enumerate}
+        \item $Y=(Y_{obs},Y_{mis} )$ los datos (faltantes y observados)
+        \item $R$ el patrón de faltantes, es decir la matriz indicadora de faltantes.
+        \item $\theta$ nuestro vector de parámetros del modelo de datos.
+        \item $\psi$ el vector de parámetros del mecanismo de faltantes.
+    \end{enumerate}
 
-Por la definición formal de MCAR, la distribución del patrón de faltantes $R$ es independiente de los datos $Y$ (tanto observados como faltantes) y de los parámetros $\theta$, condicional sólo en sus propios parámetros $\psi$. Esto se expresa como:
-\[
-p(R \mid Y_{obs}, Y_{mis}, \theta, \psi) = p(R \mid \psi)
-\]
+    Por la definición formal de MCAR, la distribución del patrón de faltantes $R$ es independiente de los datos $Y$ (tanto observados como faltantes) y de los parámetros $\theta$, condicional sólo en sus propios parámetros $\psi$. Esto se expresa como:
+    \[
+        p(R \mid Y_{obs}, Y_{mis}, \theta, \psi) = p(R \mid \psi)
+    \]
 
-Partimos de la densidad conjunta de todos los elementos:
-\begin{align*}
-    p(Y, R, \theta, \psi) &= p(R \mid Y, \theta, \psi) \, p(Y, \theta, \psi) \\
-    &= p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi) \, p(\theta, \psi)
-\end{align*}
+    Partimos de la densidad conjunta de todos los elementos:
+    \begin{align*}
+        p(Y, R, \theta, \psi) & = p(R \mid Y, \theta, \psi) \, p(Y, \theta, \psi)                        \\
+                              & = p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi) \, p(\theta, \psi)
+    \end{align*}
 
-Nuestro objetivo es encontrar la densidad conjunta de los datos y el patrón de faltantes condicional en los parámetros, $p(Y, R \mid \theta, \psi)$. Por definición de probabilidad condicional:
-\begin{align*}
-    p(Y, R \mid \theta, \psi) &= \frac{p(Y, R, \theta, \psi)}{p(\theta, \psi)}
-\end{align*}
+    Nuestro objetivo es encontrar la densidad conjunta de los datos y el patrón de faltantes condicional en los parámetros, $p(Y, R \mid \theta, \psi)$. Por definición de probabilidad condicional:
+    \begin{align*}
+        p(Y, R \mid \theta, \psi) & = \frac{p(Y, R, \theta, \psi)}{p(\theta, \psi)}
+    \end{align*}
 
-Sustituyendo la expresión anterior:
-\begin{align*}
-    p(Y, R \mid \theta, \psi) &= \frac{p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi) \, p(\theta, \psi)}{p(\theta, \psi)} \\
-    &= p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi)
-\end{align*}
+    Sustituyendo la expresión anterior:
+    \begin{align*}
+        p(Y, R \mid \theta, \psi) & = \frac{p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi) \, p(\theta, \psi)}{p(\theta, \psi)} \\
+                                  & = p(R \mid Y, \theta, \psi) \, p(Y \mid \theta, \psi)
+    \end{align*}
 
-Aplicando ahora la hipótesis de MCAR ($p(R \mid Y, \theta, \psi) = p(R \mid \psi)$):
-\begin{align*}
-    p(Y, R \mid \theta, \psi) &= p(R \mid \psi) \, p(Y \mid \theta, \psi)
-\end{align*}
+    Aplicando ahora la hipótesis de MCAR ($p(R \mid Y, \theta, \psi) = p(R \mid \psi)$):
+    \begin{align*}
+        p(Y, R \mid \theta, \psi) & = p(R \mid \psi) \, p(Y \mid \theta, \psi)
+    \end{align*}
 
-Se asume la distribución de los datos depende sólo de $\theta$, es decir, $p(Y \mid \theta, \psi) = p(Y \mid \theta)$, por lo tanto:
-\[
-p(Y, R \mid \theta, \psi) = p(Y \mid \theta) \, p(R \mid \psi)
-\]
+    Se asume la distribución de los datos depende sólo de $\theta$, es decir, $p(Y \mid \theta, \psi) = p(Y \mid \theta)$, por lo tanto:
+    \[
+        p(Y, R \mid \theta, \psi) = p(Y \mid \theta) \, p(R \mid \psi)
+    \]
 
-Por otro lado la inferencia se basa en la verosimilitud de los parámetros dados los datos observados, $(Y_{obs}, R)$. La verosimilitud se obtiene integrando la densidad conjunta sobre los valores no observados $Y_{mis}$:, es decir obteniendo la densidad marginal.
-\begin{align*}
-    L(\theta, \psi \mid Y_{obs}, R) &= p(Y_{obs}, R \mid \theta, \psi) \\
- &= \int p(Y_{obs}, Y_{mis}, R \mid \theta, \psi)  dY_{mis}
-\end{align*}
-Por la factorización anterior:
-\begin{align*}
-    L(\theta, \psi \mid Y_{obs}, R)   dY_{mis}&= \int p(Y_{obs}, Y_{mis} \mid \theta) p(R \mid \psi)  dY_{mis}\\
-    &= p(R \mid \psi) \int p(Y_{obs}, Y_{mis} \mid \theta)dY_{miss}
-\end{align*}
-Notemos que la marginal sobre la densidad conjuta de los datos observados:
-\[
-\int p(Y_{obs}, Y_{mis} \mid \theta)  dY_{mis} = p(Y_{obs} \mid \theta)
-\]
+    Por otro lado la inferencia se basa en la verosimilitud de los parámetros dados los datos observados, $(Y_{obs}, R)$. La verosimilitud se obtiene integrando la densidad conjunta sobre los valores no observados $Y_{mis}$:, es decir obteniendo la densidad marginal.
+    \begin{align*}
+        L(\theta, \psi \mid Y_{obs}, R) & = p(Y_{obs}, R \mid \theta, \psi)                         \\
+                                        & = \int p(Y_{obs}, Y_{mis}, R \mid \theta, \psi)  dY_{mis}
+    \end{align*}
+    Por la factorización anterior:
+    \begin{align*}
+        L(\theta, \psi \mid Y_{obs}, R)   dY_{mis} & = \int p(Y_{obs}, Y_{mis} \mid \theta) p(R \mid \psi)  dY_{mis} \\
+                                                   & = p(R \mid \psi) \int p(Y_{obs}, Y_{mis} \mid \theta)dY_{miss}
+    \end{align*}
+    Notemos que la marginal sobre la densidad conjuta de los datos observados:
+    \[
+        \int p(Y_{obs}, Y_{mis} \mid \theta)  dY_{mis} = p(Y_{obs} \mid \theta)
+    \]
 
-Por lo tanto, la verosimilitud conjunta final es:
-\[
-L(\theta, \psi \mid Y_{obs}, R) = p(R \mid \psi) \, p(Y_{obs} \mid \theta)
-\]
+    Por lo tanto, la verosimilitud conjunta final es:
+    \[
+        L(\theta, \psi \mid Y_{obs}, R) = p(R \mid \psi) \, p(Y_{obs} \mid \theta)
+    \]
 
-Notemos que para estimar $\theta$, se necesita encontrar:
-\[
-\arg \max_\theta{L(\theta,\psi| Y_{obs},R )}=
-\arg \max_\theta{p( Y_{obs}|\theta )}
-\]
-Esto debido a que la densidad $p(R|\psi)$ no depende de $\theta$, así la inferencia sobre el parámetro puede basarse únicamente en $p(Y_{obs}|\theta )$
+    Notemos que para estimar $\theta$, se necesita encontrar:
+    \[
+        \arg \max_\theta{L(\theta,\psi| Y_{obs},R )}=
+        \arg \max_\theta{p( Y_{obs}|\theta )}
+    \]
+    Esto debido a que la densidad $p(R|\psi)$ no depende de $\theta$, así la inferencia sobre el parámetro puede basarse únicamente en $p(Y_{obs}|\theta )$
 \end{demostracion}
 \newpage
 \begin{ejercicio}{5}
-Insesgadez bajo eliminación de casos (MCAR).\\
-Sea $Y_{obs}$ la media muestral basada solo en los casos observados. Demuestre que
+    Insesgadez bajo eliminación de casos (MCAR).\\
+    Sea $Y_{obs}$ la media muestral basada solo en los casos observados. Demuestre que
 
-$E[Y_{obs}] = \mu$
+    $E[Y_{obs}] = \mu$
 
-bajo MCAR. Discuta por qué, a pesar de ser insesgado, este estimador pierde eficiencia.
+    bajo MCAR. Discuta por qué, a pesar de ser insesgado, este estimador pierde eficiencia.
 \end{ejercicio}
 \begin{demostracion}{Demostración:}
-Sea $Y_1,\dots,Y_n \sim  F_\theta $ una muestra i.i.d.~con esperanza 
-$\mathbb{E}[Y_i]=\mu$ y varianza $\mathrm{Var}(Y_i)=\sigma^2$.\\
-y  $R_i$ la variable indicadora de si $Y_i$ fue observado .
-De esta manera:
-\[
-\overline{Y}_{\text{obs}} = \frac{1}{N} \sum_{i=1}^n R_i Y_i,
-\quad N=\sum_{i=1}^n R_i.
-\]
-De esta manera, dada la muestra:
-\[
-\mathbb{E}\!\left[\overline{Y}_{\text{obs}} \mid R\right]
-= \frac{1}{k}\sum_{i=1}^n R_i\,\mathbb{E}[Y_i \mid R].
-\]
-Bajo  \textbf{MCAR}, se cumple que 
-$Y_i \perp R_i$, de modo que: 
-\[
-\mathbb{E}[Y_i \mid R]=\mathbb{E}[Y_i]=\mu
-\]
-Así,
-\[
-\mathbb{E}\!\left[\overline{Y}_{\text{obs}} \mid R\right]
-= \frac{1}{k}\sum_{i=1}^n R_i\,\mu = \mu.
-\]
-Por la propiedad torre, concluimos que:
-\[
-\mathbb{E}[\overline{Y}_{\text{obs}}] 
-= \mathbb{E}\!\left[\;\mathbb{E}[\overline{Y}_{\text{obs}}\mid R]\;\right]
-= \mu.
-\]
-Por lo tanto, $\overline{Y}_{\text{obs}}$ es un estimador \textbf{insesgado} de $\mu$.\\
-Por otro lado la varianza de $\overline{Y}_{\text{obs}}$ condicionada a $N=k$ es
-\[
-\mathrm{Var}(\overline{Y}_{\text{obs}} \mid N=k) 
-= \frac{\sigma^2}{k}.
-\]
-Mientrás que: 
-\[
-\mathrm{Var}(\overline{Y})=\dfrac{\sigma^2}{n}
-\]
-Dado que $k<n$, es decir si falta al menos un dato:
-\[
-\frac{\sigma^2}{k} > \frac{\sigma^2}{n}.
-\]
-Esto se debe a que a pesar de ser insesgado,el estimador para la media, al ocupar menos información de la muestra, pierde eficiencia en comparación de usar la media muestral haciendo que su varianza aumente proporcional al número de observaciones perdidas.
+    Sea $Y_1,\dots,Y_n \sim  F_\theta $ una muestra i.i.d.~con esperanza
+    $\mathbb{E}[Y_i]=\mu$ y varianza $\mathrm{Var}(Y_i)=\sigma^2$.\\
+    y  $R_i$ la variable indicadora de si $Y_i$ fue observado .
+    De esta manera:
+    \[
+        \overline{Y}_{\text{obs}} = \frac{1}{N} \sum_{i=1}^n R_i Y_i,
+        \quad N=\sum_{i=1}^n R_i.
+    \]
+    De esta manera, dada la muestra:
+    \[
+        \mathbb{E}\!\left[\overline{Y}_{\text{obs}} \mid R\right]
+        = \frac{1}{k}\sum_{i=1}^n R_i\,\mathbb{E}[Y_i \mid R].
+    \]
+    Bajo  \textbf{MCAR}, se cumple que
+    $Y_i \perp R_i$, de modo que:
+    \[
+        \mathbb{E}[Y_i \mid R]=\mathbb{E}[Y_i]=\mu
+    \]
+    Así,
+    \[
+        \mathbb{E}\!\left[\overline{Y}_{\text{obs}} \mid R\right]
+        = \frac{1}{k}\sum_{i=1}^n R_i\,\mu = \mu.
+    \]
+    Por la propiedad torre, concluimos que:
+    \[
+        \mathbb{E}[\overline{Y}_{\text{obs}}]
+        = \mathbb{E}\!\left[\;\mathbb{E}[\overline{Y}_{\text{obs}}\mid R]\;\right]
+        = \mu.
+    \]
+    Por lo tanto, $\overline{Y}_{\text{obs}}$ es un estimador \textbf{insesgado} de $\mu$.\\
+    Por otro lado la varianza de $\overline{Y}_{\text{obs}}$ condicionada a $N=k$ es
+    \[
+        \mathrm{Var}(\overline{Y}_{\text{obs}} \mid N=k)
+        = \frac{\sigma^2}{k}.
+    \]
+    Mientrás que:
+    \[
+        \mathrm{Var}(\overline{Y})=\dfrac{\sigma^2}{n}
+    \]
+    Dado que $k<n$, es decir si falta al menos un dato:
+    \[
+        \frac{\sigma^2}{k} > \frac{\sigma^2}{n}.
+    \]
+    Esto se debe a que a pesar de ser insesgado,el estimador para la media, al ocupar menos información de la muestra, pierde eficiencia en comparación de usar la media muestral haciendo que su varianza aumente proporcional al número de observaciones perdidas.
 \end{demostracion}
 
 \newpage
 \begin{ejercicio}{6}
-Factorización bajo MAR.
-A partir de la definición de MAR, muestre que
+    Factorización bajo MAR.
+    A partir de la definición de MAR, muestre que
 
-$L(\theta; Y_{obs}, R) \propto p(Y_{obs} | \theta)$.
+    $L(\theta; Y_{obs}, R) \propto p(Y_{obs} | \theta)$.
 
-¿Qué suposición adicional en el prior es necesaria en el enfoque bayesiano para concluir
-ignorabilidad?
+    ¿Qué suposición adicional en el prior es necesaria en el enfoque bayesiano para concluir
+    ignorabilidad?
 \end{ejercicio}
 \begin{demostracion}{Demostración}
-Bajo la suposición \textbf{MAR } el mecanismo de faltantes satisface
-\[
-p(R\mid Y,\theta,\psi)=p(R\mid Y_{\text{obs}},\psi),
-\]
-es decir, la probabilidad del patrón \(R\) puede depender de los datos observados \(Y_{\text{obs}}\) pero \emph{no} de los valores faltantes \(Y_{\text{mis}}\) ni de \(\theta\).\\
-De esta manera tenemos que:
-\begin{align*}
-    p(Y,R| \theta,\psi)&=\dfrac{p(R|Y,\theta,\psi)}{p(\theta,\psi)}p(Y,\theta,\psi)\\
-    &=p(R|Y_{obs},\psi )p(Y|\theta,\psi)\\
-    &=p(R|Y_{obs},\psi )p(Y|\theta)
-\end{align*}
+    Bajo la suposición \textbf{MAR } el mecanismo de faltantes satisface
+    \[
+        p(R\mid Y,\theta,\psi)=p(R\mid Y_{\text{obs}},\psi),
+    \]
+    es decir, la probabilidad del patrón \(R\) puede depender de los datos observados \(Y_{\text{obs}}\) pero \emph{no} de los valores faltantes \(Y_{\text{mis}}\) ni de \(\theta\).\\
+    De esta manera tenemos que:
+    \begin{align*}
+        p(Y,R| \theta,\psi) & =\dfrac{p(R|Y,\theta,\psi)}{p(\theta,\psi)}p(Y,\theta,\psi) \\
+                            & =p(R|Y_{obs},\psi )p(Y|\theta,\psi)                         \\
+                            & =p(R|Y_{obs},\psi )p(Y|\theta)
+    \end{align*}
 
-Para la verosimilitud de los datos observados y el patrón \(R\), debemos de marginalizar:
-\[
-\begin{aligned}
-L(\theta,\psi;Y_{\text{obs}},R)
-&= p(Y_{\text{obs}},R\mid \theta,\psi)
-= \int p(Y_{\text{obs}},Y_{\text{mis}},R\mid \theta,\psi)\, dY_{\text{mis}}\\
-&= \int p(Y_{\text{obs}},Y_{\text{mis}}\mid\theta)\; p(R\mid Y_{\text{obs}},\psi)\, dY_{\text{mis}}\\
-&= p(R\mid Y_{\text{obs}},\psi)\; \int p(Y_{\text{obs}},Y_{\text{mis}}\mid\theta)\, dY_{\text{mis}}\\
-&= p(R\mid Y_{\text{obs}},\psi)\; p(Y_{\text{obs}}\mid\theta).
-\end{aligned}
-\]
-Para estimación por máxima verosimilitud de \(\theta\), tenemos que:
-\[
-\arg\max_\theta L(\theta,\psi)=\arg\max_\theta p(Y_{\text{obs}}\mid\theta)
-\]
-Por esto, concluimos que:
-\[
-L(\theta|Y_{obs},R )\propto p(Y_{obs}|\theta )
-\]
-Notemos que en un enfoque bayesiano:
-\begin{align*}
-    p(\theta,\psi|Y,R )&=\dfrac{p(R,Y|\theta,\psi)p(\theta,\psi)}{p(Y,R)}\\
-    &\propto p(R,Y|\theta,\psi)p(\theta,\psi)
-\end{align*}
-Por la factorización de la densidad:
-\begin{align*}
-    p(\theta,\psi|Y,R )&\propto p(R|Y_{obs},\psi  )p(Y_{obs} |\theta)p(\theta,\psi)
-\end{align*}
-Notemos que si podemos la distribución del parámetro es independiente al mecanismo de faltantes:
-\begin{align*}
-    p(\theta,\psi|Y,R )&\propto p(Y|\theta)p(\theta)\left(p(\psi) p(R|Y_{obs},\psi  )\right)
-\end{align*}
-De esta manera, la densidad a \textit{posteriori} puede factorizarse como el producto de 2 términos, el primero que depende de $\theta$, mientras que el segundo solamente depende de $\psi$, así:
-\begin{align*}
-  p(\theta| Y,R)&=\int p(\theta,\psi|Y,R)d\psi\\
-  &\propto\int p(Y|\theta)p(\theta)\left(p(\psi) p(R|Y_{obs},\psi  )\right)d\psi\\
-  &\propto  p(Y|\theta)p(\theta)
-\end{align*}
-Por lo que bajo esta suposición tenemos que podemos ignorar a  $\psi$ para la inferencia sobre $\theta$
+    Para la verosimilitud de los datos observados y el patrón \(R\), debemos de marginalizar:
+    \[
+        \begin{aligned}
+            L(\theta,\psi;Y_{\text{obs}},R)
+             & = p(Y_{\text{obs}},R\mid \theta,\psi)
+            = \int p(Y_{\text{obs}},Y_{\text{mis}},R\mid \theta,\psi)\, dY_{\text{mis}}                           \\
+             & = \int p(Y_{\text{obs}},Y_{\text{mis}}\mid\theta)\; p(R\mid Y_{\text{obs}},\psi)\, dY_{\text{mis}} \\
+             & = p(R\mid Y_{\text{obs}},\psi)\; \int p(Y_{\text{obs}},Y_{\text{mis}}\mid\theta)\, dY_{\text{mis}} \\
+             & = p(R\mid Y_{\text{obs}},\psi)\; p(Y_{\text{obs}}\mid\theta).
+        \end{aligned}
+    \]
+    Para estimación por máxima verosimilitud de \(\theta\), tenemos que:
+    \[
+        \arg\max_\theta L(\theta,\psi)=\arg\max_\theta p(Y_{\text{obs}}\mid\theta)
+    \]
+    Por esto, concluimos que:
+    \[
+        L(\theta|Y_{obs},R )\propto p(Y_{obs}|\theta )
+    \]
+    Notemos que en un enfoque bayesiano:
+    \begin{align*}
+        p(\theta,\psi|Y,R ) & =\dfrac{p(R,Y|\theta,\psi)p(\theta,\psi)}{p(Y,R)} \\
+                            & \propto p(R,Y|\theta,\psi)p(\theta,\psi)
+    \end{align*}
+    Por la factorización de la densidad:
+    \begin{align*}
+        p(\theta,\psi|Y,R ) & \propto p(R|Y_{obs},\psi  )p(Y_{obs} |\theta)p(\theta,\psi)
+    \end{align*}
+    Notemos que si podemos la distribución del parámetro es independiente al mecanismo de faltantes:
+    \begin{align*}
+        p(\theta,\psi|Y,R ) & \propto p(Y|\theta)p(\theta)\left(p(\psi) p(R|Y_{obs},\psi  )\right)
+    \end{align*}
+    De esta manera, la densidad a \textit{posteriori} puede factorizarse como el producto de 2 términos, el primero que depende de $\theta$, mientras que el segundo solamente depende de $\psi$, así:
+    \begin{align*}
+        p(\theta| Y,R) & =\int p(\theta,\psi|Y,R)d\psi                                                 \\
+                       & \propto\int p(Y|\theta)p(\theta)\left(p(\psi) p(R|Y_{obs},\psi  )\right)d\psi \\
+                       & \propto  p(Y|\theta)p(\theta)
+    \end{align*}
+    Por lo que bajo esta suposición tenemos que podemos ignorar a  $\psi$ para la inferencia sobre $\theta$
 \end{demostracion}
 
 \newpage
 \begin{ejercicio}{7}
-Distancia de Cook como medida global de influencia.
-Partiendo de la definición
+    Distancia de Cook como medida global de influencia.
+    Partiendo de la definición
 
-$D_i = \frac{\sum_{j=1}^{n} (y_j - \hat{y}_{j(i)})^2}{p\hat{\sigma}^2}$
+    $D_i = \frac{\sum_{j=1}^{n} (y_j - \hat{y}_{j(i)})^2}{p\hat{\sigma}^2}$
 
-muestre que se puede reescribir en función de los residuos estandarizados y el leverage
-como
+    muestre que se puede reescribir en función de los residuos estandarizados y el leverage
+    como
 
-$D_i = \frac{r_i^2}{p} \cdot \frac{h_{ii}}{1 - h_{ii}}$.
+    $D_i = \frac{r_i^2}{p} \cdot \frac{h_{ii}}{1 - h_{ii}}$.
 
-Discuta la interpretación de esta forma alternativa.
+    Discuta la interpretación de esta forma alternativa.
 \end{ejercicio}
 \begin{demostracion}{Demostración}
     Tenemos que la distancia de Cook \footnote{Ramírez, L. (s.f.). \textit{Residuos Studentizados}. Notas del curso Modelos Estadísticos I. Centro de Investigación en Matemáticas (CIMAT). Recuperado de \url{http://personal.cimat.mx:8181/~leticia.ramirez/Modelos_Estadisticos_I/Cap2.html#residuos-studentizados}}: se construye a partir de remover la $i^{th}$ observación y comparar los coeficientes estimados de la muestra completa contra la muestra sin la $i^{th}$ observación, así sean:
@@ -385,265 +385,265 @@ Discuta la interpretación de esta forma alternativa.
         \item $\hat{\beta}$ los coeficientes del modelo $Y=X\beta+\epsilon$
         \item $V_{i} $, el vector $V$ si su $i^{th} $ entrada, es decir si $V$ es un vector de tamaño $n$, $V_{i} $ es de tamaño $n-1$
         \item Dada una matriz $X_{n\times m} $, tenemos que $X_{1} $ denota a la matríz sin la primera fila, es decir una matriz  $X_{(n-1)\times m} $
-        \end{enumerate}
-Por lo tanto, sea $Y=\begin{pmatrix}
-    Y_1\\
-    Y_{(1)} 
-\end{pmatrix} $ la partición del véctor, así:
-\begin{align*}
-    Y=X\beta+\epsilon=\begin{pmatrix}
-        x_1^\top\\
-        X_1
-    \end{pmatrix}\beta+\epsilon
-\end{align*}
-Si quitamos la primera observación, tenemos:
-\begin{align*}
-    Y_{(1)}=X_1\beta+\epsilon_{(1)}\implies \hat{\beta_{(1)} }=\left(X_1^\top X_1 \right)^{-1}X_1^\top Y_{(1)}  
-\end{align*}
-Dado el primer renglón de la matriz $x_1$, notamos  lo siguiente:
-\begin{align*}
-    X=\begin{pmatrix}
-        x_1^\top\\
-        X_1
-    \end{pmatrix}\implies X^\top X=\begin{pmatrix}
-        x_1,X_1^\top
-    \end{pmatrix}\begin{pmatrix}
-        x_1^\top\\
-        X_1
-    \end{pmatrix}=x_1x_1^\top +X_1^\top X_1
-\end{align*}
-Sustituyendo la expresión para $X_{1} ^\top X_1$ y usando la \textbf{Proposición B.6 (Fórmula de Woodbury)}\footnote{Ramírez, L. (s.f.). \textit{Normal multivariada}. Notas del curso Modelos Estadísticos I. Centro de Investigación en Matemáticas (CIMAT). Recuperado de \url{http://personal.cimat.mx:8181/~leticia.ramirez/Modelos_Estadisticos_I/Normal_multivariada.html}}:
+    \end{enumerate}
+    Por lo tanto, sea $Y=\begin{pmatrix}
+            Y_1 \\
+            Y_{(1)}
+        \end{pmatrix} $ la partición del véctor, así:
+    \begin{align*}
+        Y=X\beta+\epsilon=\begin{pmatrix}
+                              x_1^\top \\
+                              X_1
+                          \end{pmatrix}\beta+\epsilon
+    \end{align*}
+    Si quitamos la primera observación, tenemos:
+    \begin{align*}
+        Y_{(1)}=X_1\beta+\epsilon_{(1)}\implies \hat{\beta_{(1)} }=\left(X_1^\top X_1 \right)^{-1}X_1^\top Y_{(1)}
+    \end{align*}
+    Dado el primer renglón de la matriz $x_1$, notamos  lo siguiente:
+    \begin{align*}
+        X=\begin{pmatrix}
+              x_1^\top \\
+              X_1
+          \end{pmatrix}\implies X^\top X=\begin{pmatrix}
+                                             x_1,X_1^\top
+                                         \end{pmatrix}\begin{pmatrix}
+                                                          x_1^\top \\
+                                                          X_1
+                                                      \end{pmatrix}=x_1x_1^\top +X_1^\top X_1
+    \end{align*}
+    Sustituyendo la expresión para $X_{1} ^\top X_1$ y usando la \textbf{Proposición B.6 (Fórmula de Woodbury)}\footnote{Ramírez, L. (s.f.). \textit{Normal multivariada}. Notas del curso Modelos Estadísticos I. Centro de Investigación en Matemáticas (CIMAT). Recuperado de \url{http://personal.cimat.mx:8181/~leticia.ramirez/Modelos_Estadisticos_I/Normal_multivariada.html}}:
 
-Tenemos que:
-\[
-(X_1^\top X_1)^{-1} =(X^\top X-x_1x_1^\top)^{-1}= (X^\top X)^{-1}+(X^\top X)^{-1}x_1(1-x_1^\top (X^\top X)^{-1}x_1)^{-1}x_1^\top(X^\top X)^{-1}
-\]
-Por otro lado:
-\[
-X^\top Y=\begin{pmatrix}
-    x_1&X_1^\top
-\end{pmatrix}\begin{pmatrix}
-    Y_1\\
-    Y_{(1)}
-\end{pmatrix}\implies X_1^\top Y_{(1)}=X^\top Y-x_{1}Y_1
-\]
-De esta forma tenemos:
-\begin{align*}
-\widehat{\boldsymbol{\beta}}_{(1)} & = \;(X_1^{\top}X_1)^{-1}X_1^{\top}\boldsymbol{Y}_{(1)}\\[5pt]
-&= \; (X^{\top}X)^{-1}X^{\top}\boldsymbol{Y}+(X^{\top}X)^{-1}\boldsymbol{x}_1\left[1-\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\right]^{-1}\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}X^{\top}\boldsymbol{Y} \\
-    & \quad -(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 -(X^{\top}X)^{-1}\boldsymbol{x}_1\left[1-\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\right]^{-1}\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 \\[10pt]
-\end{align*}
-Notemos que:
-\[
-H=X^\top (X^\top X)^{-1}X\implies x_1^\top(X^\top X)^{-1}x_1=h_{11}
-\]
-Por lo tanto:
-\begin{align*}
-    \hat{\beta_{(1)} }& = \; \widehat{\boldsymbol{\beta}}+(X^{\top}X)^{-1}\boldsymbol{x}_1(1-h_{11})^{-1}\boldsymbol{x}_1^{\top}\widehat{\boldsymbol{\beta}}
-    -(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 -(X^{\top}X)^{-1}\boldsymbol{x}_1(1-h_{11})^{-1}h_{11}\boldsymbol{Y}_1 \\[5pt]
-& = \; \widehat{\boldsymbol{\beta}}+\frac{(X^{\top}X)^{-1}}{1-h_{11}} \left[
-     \boldsymbol{x}_1\widehat{\boldsymbol{Y}}_1 - (1-h_{11})\boldsymbol{x}_1Y_1 - \boldsymbol{x}_1h_{11}Y_1\right]\\[5pt]
-     &=\hat{\beta}+\dfrac{(X^\top X)^{-1} }{1-h_{11} }\left[x_1(\hat{Y_1}-Y_1) \right]
-\end{align*}
-Recordemos que:
-\begin{align*}
-    \mathbf{e}=Y-\hat{Y}\quad \implies\mathbf{e_i}=(Y_i-\hat{Y_i} )
-\end{align*}
-Así concluimos que:
-\begin{align*}
-    \hat{\beta_{(1)} } 
-& = \; \widehat{\boldsymbol{\beta}}-(X^{\top}X)^{-1}\boldsymbol{x}_1 \frac{e_1}{1-h_{11}}.
-\end{align*}
-Notemos lo siguiente:
-\begin{align*}
-    D_i&=\dfrac{\sum_{j=1}^n(\hat{y}_j-\hat{y}_{j(i)} ) }{p\hat{\sigma}^2}=\dfrac{1}{p\hat{\sigma}^2}(\hat{Y}- \hat{Y}_{(i)} )^\top(\hat{Y}- \hat{Y}_{(i)} )\\
-    &=\dfrac{1}{p\hat{\sigma}^2}(X(\hat{\beta}-\hat{\beta_i}))^\top(X(\hat{\beta}-\hat{\beta_i}))\\
-      &=\dfrac{1}{p\hat{\sigma}^2}(\hat{\beta}-\hat{\beta_i})^\top X^\top X(\hat{\beta}-\hat{\beta_i}))
-\end{align*}
-Mientras que de la expresión obtenida tenemos que:
-\begin{align*}
-    \hat{\beta_{(i)} }-\hat{\beta}=\dfrac{(X^\top X)^{-1} }{1-h_{ii} }x_i(\hat{Y_i}-Y_i)
-\end{align*}
-Lo cual nos lleva a lo siguiente:
-\begin{align*}
-    (\hat{\beta}-\hat{\beta_i})^\top X^\top X(\hat{\beta}-\hat{\beta_i}))&=\left(\dfrac{\hat{Y_i-Y_i}}{1-h_{ii} }\right)x_i^\top(X^\top X)^{-1} (X^\top X)\left(\dfrac{\hat{Y_i-Y_i}}{1-h_{ii} }\right)(X^\top X)^{-1}x_i\\
-    &=\left(\dfrac{\hat{Y_i}-Y_i}{1-h_{ii} }\right)^2 x_i^\top (X^\top X)^{-1}x_i\\
-    &=\left(\dfrac{\hat{Y_i}-Y_i}{1-h_{ii} }\right)^2h_{ii}
-\end{align*}
-Recordando que:
-\[
-\mathbf{e_i}=\hat{Y_i}-Y_i
-\]
-Se sigue de lo anterior:
-\begin{align*}
-    D_i=\dfrac{h_{ii} }{p(1-h_{ii}) }\left(\dfrac{\mathbf{e}_i}{\hat{\sigma}\sqrt{1-h_{ii}} }\right)^2=\dfrac{\mathbf{r_i}^2}{p}\left(\dfrac{h_{ii} }{1-h_{ii} }\right)
-\end{align*}
-Dado que los \textit{leverages} miden la influencia de una observación en el ajuste del modelo, una observación altamente influyente hará que la \textbf{Distancia de Cook} aumente, permitiéndonos así detectar posibles \textit{outliers}. Además, si una observación está mal ajustada, es decir, si presenta un residual alto, esto también contribuirá a un mayor valor de la Distancia de Cook, lo que ayuda a identificar otro tipo de \textit{outliers}.
+    Tenemos que:
+    \[
+        (X_1^\top X_1)^{-1} =(X^\top X-x_1x_1^\top)^{-1}= (X^\top X)^{-1}+(X^\top X)^{-1}x_1(1-x_1^\top (X^\top X)^{-1}x_1)^{-1}x_1^\top(X^\top X)^{-1}
+    \]
+    Por otro lado:
+    \[
+        X^\top Y=\begin{pmatrix}
+            x_1 & X_1^\top
+        \end{pmatrix}\begin{pmatrix}
+            Y_1 \\
+            Y_{(1)}
+        \end{pmatrix}\implies X_1^\top Y_{(1)}=X^\top Y-x_{1}Y_1
+    \]
+    De esta forma tenemos:
+    \begin{align*}
+        \widehat{\boldsymbol{\beta}}_{(1)} & = \;(X_1^{\top}X_1)^{-1}X_1^{\top}\boldsymbol{Y}_{(1)}                                                                                                                                                                                      \\[5pt]
+                                           & = \; (X^{\top}X)^{-1}X^{\top}\boldsymbol{Y}+(X^{\top}X)^{-1}\boldsymbol{x}_1\left[1-\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\right]^{-1}\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}X^{\top}\boldsymbol{Y}                        \\
+                                           & \quad -(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 -(X^{\top}X)^{-1}\boldsymbol{x}_1\left[1-\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\right]^{-1}\boldsymbol{x}_1^{\top}(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 \\[10pt]
+    \end{align*}
+    Notemos que:
+    \[
+        H=X^\top (X^\top X)^{-1}X\implies x_1^\top(X^\top X)^{-1}x_1=h_{11}
+    \]
+    Por lo tanto:
+    \begin{align*}
+        \hat{\beta_{(1)} } & = \; \widehat{\boldsymbol{\beta}}+(X^{\top}X)^{-1}\boldsymbol{x}_1(1-h_{11})^{-1}\boldsymbol{x}_1^{\top}\widehat{\boldsymbol{\beta}}
+        -(X^{\top}X)^{-1}\boldsymbol{x}_1\boldsymbol{Y}_1 -(X^{\top}X)^{-1}\boldsymbol{x}_1(1-h_{11})^{-1}h_{11}\boldsymbol{Y}_1                                  \\[5pt]
+                           & = \; \widehat{\boldsymbol{\beta}}+\frac{(X^{\top}X)^{-1}}{1-h_{11}} \left[
+        \boldsymbol{x}_1\widehat{\boldsymbol{Y}}_1 - (1-h_{11})\boldsymbol{x}_1Y_1 - \boldsymbol{x}_1h_{11}Y_1\right]                                             \\[5pt]
+                           & =\hat{\beta}+\dfrac{(X^\top X)^{-1} }{1-h_{11} }\left[x_1(\hat{Y_1}-Y_1) \right]
+    \end{align*}
+    Recordemos que:
+    \begin{align*}
+        \mathbf{e}=Y-\hat{Y}\quad \implies\mathbf{e_i}=(Y_i-\hat{Y_i} )
+    \end{align*}
+    Así concluimos que:
+    \begin{align*}
+        \hat{\beta_{(1)} }
+         & = \; \widehat{\boldsymbol{\beta}}-(X^{\top}X)^{-1}\boldsymbol{x}_1 \frac{e_1}{1-h_{11}}.
+    \end{align*}
+    Notemos lo siguiente:
+    \begin{align*}
+        D_i & =\dfrac{\sum_{j=1}^n(\hat{y}_j-\hat{y}_{j(i)} ) }{p\hat{\sigma}^2}=\dfrac{1}{p\hat{\sigma}^2}(\hat{Y}- \hat{Y}_{(i)} )^\top(\hat{Y}- \hat{Y}_{(i)} ) \\
+            & =\dfrac{1}{p\hat{\sigma}^2}(X(\hat{\beta}-\hat{\beta_i}))^\top(X(\hat{\beta}-\hat{\beta_i}))                                                         \\
+            & =\dfrac{1}{p\hat{\sigma}^2}(\hat{\beta}-\hat{\beta_i})^\top X^\top X(\hat{\beta}-\hat{\beta_i}))
+    \end{align*}
+    Mientras que de la expresión obtenida tenemos que:
+    \begin{align*}
+        \hat{\beta_{(i)} }-\hat{\beta}=\dfrac{(X^\top X)^{-1} }{1-h_{ii} }x_i(\hat{Y_i}-Y_i)
+    \end{align*}
+    Lo cual nos lleva a lo siguiente:
+    \begin{align*}
+        (\hat{\beta}-\hat{\beta_i})^\top X^\top X(\hat{\beta}-\hat{\beta_i})) & =\left(\dfrac{\hat{Y_i-Y_i}}{1-h_{ii} }\right)x_i^\top(X^\top X)^{-1} (X^\top X)\left(\dfrac{\hat{Y_i-Y_i}}{1-h_{ii} }\right)(X^\top X)^{-1}x_i \\
+                                                                              & =\left(\dfrac{\hat{Y_i}-Y_i}{1-h_{ii} }\right)^2 x_i^\top (X^\top X)^{-1}x_i                                                                    \\
+                                                                              & =\left(\dfrac{\hat{Y_i}-Y_i}{1-h_{ii} }\right)^2h_{ii}
+    \end{align*}
+    Recordando que:
+    \[
+        \mathbf{e_i}=\hat{Y_i}-Y_i
+    \]
+    Se sigue de lo anterior:
+    \begin{align*}
+        D_i=\dfrac{h_{ii} }{p(1-h_{ii}) }\left(\dfrac{\mathbf{e}_i}{\hat{\sigma}\sqrt{1-h_{ii}} }\right)^2=\dfrac{\mathbf{r_i}^2}{p}\left(\dfrac{h_{ii} }{1-h_{ii} }\right)
+    \end{align*}
+    Dado que los \textit{leverages} miden la influencia de una observación en el ajuste del modelo, una observación altamente influyente hará que la \textbf{Distancia de Cook} aumente, permitiéndonos así detectar posibles \textit{outliers}. Además, si una observación está mal ajustada, es decir, si presenta un residual alto, esto también contribuirá a un mayor valor de la Distancia de Cook, lo que ayuda a identificar otro tipo de \textit{outliers}.
 \end{demostracion}
 \newpage
 \begin{ejercicio}{8}
-Invarianza afín en Min--Max
-Sea $x_1, \ldots, x_n$ un conjunto de datos y defina la transformación
+    Invarianza afín en Min--Max
+    Sea $x_1, \ldots, x_n$ un conjunto de datos y defina la transformación
 
-$x_i^* = \frac{x_i - \min(x)}{\max(x) - \min(x)}$.
+    $x_i^* = \frac{x_i - \min(x)}{\max(x) - \min(x)}$.
 
-Pruebe que si $y_i = ax_i + b$ con $a > 0$, entonces $y_i^* = x_i^*$.
+    Pruebe que si $y_i = ax_i + b$ con $a > 0$, entonces $y_i^* = x_i^*$.
 \end{ejercicio}
 \begin{demostracion}{Demostración:}
     Sean $x_1,..,x_n$ un conjunto de datos, definimos el re-escalamiento:
     \[
-    x_i^*=\dfrac{x_i-\min(x)}{\max(x)-\min(x)}
+        x_i^*=\dfrac{x_i-\min(x)}{\max(x)-\min(x)}
     \]
-Para $y_i=a x_i+b$, tenemos que:
-\[
-y_i^*=\dfrac{y_i-\min(y)}{\max(y)-\min(y)}
-\]
-Tenemos que:
-\begin{align*}
-    \max (y)&=\max \{y_i| i=1,..,n\}\\
-    &=\max\{ ax_i+b \}=\max\{ ax_i \}+b\\
-    &=a\max\{ x_i \}+b  \quad (a>0)
-\end{align*}
-Así concluimos que:
-\begin{align*}
-    y_i^*&=\dfrac{y_i-\min(y)}{\max(y)-\min(y)}\\
-    &=\dfrac{ax_i+b-(a\min(x)+b)}{(a\max(x)+b)-(a\min(x)+b)}\\
-    &=\dfrac{a(x_i-\min(x))}{a(\max(x)-\min(x))}\\
-    &=x_i^*
-\end{align*}
+    Para $y_i=a x_i+b$, tenemos que:
+    \[
+        y_i^*=\dfrac{y_i-\min(y)}{\max(y)-\min(y)}
+    \]
+    Tenemos que:
+    \begin{align*}
+        \max (y) & =\max \{y_i| i=1,..,n\}            \\
+                 & =\max\{ ax_i+b \}=\max\{ ax_i \}+b \\
+                 & =a\max\{ x_i \}+b  \quad (a>0)
+    \end{align*}
+    Así concluimos que:
+    \begin{align*}
+        y_i^* & =\dfrac{y_i-\min(y)}{\max(y)-\min(y)}                   \\
+              & =\dfrac{ax_i+b-(a\min(x)+b)}{(a\max(x)+b)-(a\min(x)+b)} \\
+              & =\dfrac{a(x_i-\min(x))}{a(\max(x)-\min(x))}             \\
+              & =x_i^*
+    \end{align*}
 \end{demostracion}
 \newpage
 \begin{ejercicio}{9}
-Transformación logarítmica y reducción de colas. Considere $X \sim \text{Pareto}(\alpha, x_m)$
-con densidad
+    Transformación logarítmica y reducción de colas. Considere $X \sim \text{Pareto}(\alpha, x_m)$
+    con densidad
 
-$f(x) = \frac{\alpha x_m^\alpha}{x^{\alpha+1}}, \quad x \geq x_m > 0, \alpha > 0$.
+    $f(x) = \frac{\alpha x_m^\alpha}{x^{\alpha+1}}, \quad x \geq x_m > 0, \alpha > 0$.
 
-Defina la transformación $Y = \log(X)$.
+    Defina la transformación $Y = \log(X)$.
 
-a) Encuentre la distribución de $Y$ y su función de densidad.
+    a) Encuentre la distribución de $Y$ y su función de densidad.
 
-b) Discuta cómo cambia el comportamiento de la cola al pasar de $X$ a $Y$.
+    b) Discuta cómo cambia el comportamiento de la cola al pasar de $X$ a $Y$.
 
-c) Explique por qué la transformación logarítmica "acorta" colas largas y produce distribuciones más cercanas a la simetría.
+    c) Explique por qué la transformación logarítmica "acorta" colas largas y produce distribuciones más cercanas a la simetría.
 \end{ejercicio}\begin{demostracion}{Demostración:}
-Sea \(X\sim\mathrm{Pareto}(\alpha,x_m)\) con densidad
-\[
-f_X(x)=\frac{\alpha x_m^\alpha}{x^{\alpha+1}},\qquad x\ge x_m>0,\ \alpha>0.
-\]
-Definimos \(Y=\log X\), dado el  cambio de variable \(x=e^y\). El soporte de \(Y\) es
-\[
-y=\log x\ge \log x_m.
-\]
-La derivada es \(dx/dy=e^y\). Por la fórmula de cambio de variable,
-\[
-f_Y(y)=f_X(e^y)\,\left|\frac{dx}{dy}\right|
-= \frac{\alpha x_m^\alpha}{(e^y)^{\alpha+1}} \; e^y
-= \alpha x_m^\alpha e^{-(\alpha+1)y} e^{y}
-= \alpha x_m^\alpha e^{-\alpha y}.
-\]
-Sea: \(y_0=\log x_m\),
-\[
-f_Y(y)=\alpha e^{-\alpha (y-y_0)},\qquad y\ge y_0=\log x_m.
-\]
-Por tanto, es una exponencial truncada:
-\[
-Y\sim \mathrm{Exp}(\alpha,y_0),
-\]
-Por otro lado, el comportamientos de las colas puede estudiarse por medio de:
-\[
-\mathbb{P}(Y>y)=\int_y^\infty f_Y(t)\,dt = e^{-\alpha(y-\log x_m)},\qquad y\ge\log x_m.
-\]
+    Sea \(X\sim\mathrm{Pareto}(\alpha,x_m)\) con densidad
+    \[
+        f_X(x)=\frac{\alpha x_m^\alpha}{x^{\alpha+1}},\qquad x\ge x_m>0,\ \alpha>0.
+    \]
+    Definimos \(Y=\log X\), dado el  cambio de variable \(x=e^y\). El soporte de \(Y\) es
+    \[
+        y=\log x\ge \log x_m.
+    \]
+    La derivada es \(dx/dy=e^y\). Por la fórmula de cambio de variable,
+    \[
+        f_Y(y)=f_X(e^y)\,\left|\frac{dx}{dy}\right|
+        = \frac{\alpha x_m^\alpha}{(e^y)^{\alpha+1}} \; e^y
+        = \alpha x_m^\alpha e^{-(\alpha+1)y} e^{y}
+        = \alpha x_m^\alpha e^{-\alpha y}.
+    \]
+    Sea: \(y_0=\log x_m\),
+    \[
+        f_Y(y)=\alpha e^{-\alpha (y-y_0)},\qquad y\ge y_0=\log x_m.
+    \]
+    Por tanto, es una exponencial truncada:
+    \[
+        Y\sim \mathrm{Exp}(\alpha,y_0),
+    \]
+    Por otro lado, el comportamientos de las colas puede estudiarse por medio de:
+    \[
+        \mathbb{P}(Y>y)=\int_y^\infty f_Y(t)\,dt = e^{-\alpha(y-\log x_m)},\qquad y\ge\log x_m.
+    \]
 
-Mientras que para la variable $X$ 
-\[
-\mathbb{P}(X>x)=\left(\frac{x_m}{x}\right)^{\alpha}
-\]
-Notemos lo siguiente:
-\[
-\mathbb{P}(Y>y)=\mathbb{P}(X>e^y)=\left(\frac{x_m}{e^y}\right)^{\alpha}=e^{-\alpha(y-\log x_m)}.
-\]
+    Mientras que para la variable $X$
+    \[
+        \mathbb{P}(X>x)=\left(\frac{x_m}{x}\right)^{\alpha}
+    \]
+    Notemos lo siguiente:
+    \[
+        \mathbb{P}(Y>y)=\mathbb{P}(X>e^y)=\left(\frac{x_m}{e^y}\right)^{\alpha}=e^{-\alpha(y-\log x_m)}.
+    \]
     En la distribución Pareto, la cola de $X$ decrece de manera polinómica:
     \[
-    P(X > x) = x_m^{\alpha} x^{-\alpha}
+        P(X > x) = x_m^{\alpha} x^{-\alpha}
     \]
-    lo cual corresponde a una cola pesada.  
+    lo cual corresponde a una cola pesada.
     Sin embargo, al transformar $Y = \log(X)$, la función de supervivencia pasa a ser
     \[
-    P(Y > y) = P(X > e^y) = (x_m e^{-y})^{\alpha}, \quad y \geq \log(x_m),
+        P(Y > y) = P(X > e^y) = (x_m e^{-y})^{\alpha}, \quad y \geq \log(x_m),
     \]
     En consecuencia, $Y$ tiene colas  más ligeras que $X$. \\
- Por úíltimo dado que  $\ln(x)$ transforma multiplicaciones en sumas. 
-  \[
-  \log(1000 x_m)=\log x_m + \log 1000,
-\]
-Así comprime las colas y por ende reduce la influencia de valores extremos,además, al comprimir la escala para valores grandes de $X$, la distribución transformada $Y$ tiende a mostrar un comportamiento más cercano a la simetría..
+    Por úíltimo dado que  $\ln(x)$ transforma multiplicaciones en sumas.
+    \[
+        \log(1000 x_m)=\log x_m + \log 1000,
+    \]
+    Así comprime las colas y por ende reduce la influencia de valores extremos,además, al comprimir la escala para valores grandes de $X$, la distribución transformada $Y$ tiende a mostrar un comportamiento más cercano a la simetría..
 
-\noindent\(\square\)
+    \noindent\(\square\)
 \end{demostracion}
 
 \newpage
 \begin{ejercicio}{10}
-Robustez de la mediana vs. la media
-Considere $x = \{1, 2, 3, 4, M\}$ con $M \rightarrow \infty$.
+    Robustez de la mediana vs. la media
+    Considere $x = \{1, 2, 3, 4, M\}$ con $M \rightarrow \infty$.
 
-a) Calcule la media $\bar{x}$ y la desviación estándar $s$ como función de $M$.
+    a) Calcule la media $\bar{x}$ y la desviación estándar $s$ como función de $M$.
 
-b) Calcule la mediana $m$ y el rango intercuartílico $RIQ$.
+    b) Calcule la mediana $m$ y el rango intercuartílico $RIQ$.
 
-c) Analice: ¿qué medidas permanecen estables y cuáles se distorsionan al crecer $M$?
+    c) Analice: ¿qué medidas permanecen estables y cuáles se distorsionan al crecer $M$?
 \end{ejercicio}
 \begin{demostracion}{Robustez: media vs mediana}
-Sea la muestra
-\[
-x=\{1,2,3,4,M\},\qquad M\to\infty,\quad n=5.
-\]
-La media es
-\[
-\overline{x}=\frac{1+2+3+4+M}{5}=\frac{10+M}{5}.
-\]
-Para la varianza muestral:
-\[
-\sum_{i=1}^n x_i^2 = 1^2+2^2+3^2+4^2+M^2 = 30 + M^2,
-\]
-y
-\[
-s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i-\overline{x})^2
-= \frac{1}{n-1}\Big( \sum_{i=1}^n x_i^2 - n\overline{x}^2\Big).
-\]
-Por lo tanto:
-\[
-\begin{aligned}
-s^2
-&= \frac{1}{4}\Big(30+M^2 - 5\Big(\frac{10+M}{5}\Big)^2\Big)\\
-&=\frac{1}{5}M^2 - M + \frac{5}{2}.
-\end{aligned}
-\]
-Así la desviación estándar muestral es
-\[
-s=\sqrt{\frac{1}{5}M^2 - M + \frac{5}{2}}.
-\]
-Por otro lado para la mediana, ordenando la muestra: \(1,2,3,4,M\), dado que son impares tenemos que 
-\[
-m=\operatorname{median}(x)=3,
-\]
-independiente de \(M\).
+    Sea la muestra
+    \[
+        x=\{1,2,3,4,M\},\qquad M\to\infty,\quad n=5.
+    \]
+    La media es
+    \[
+        \overline{x}=\frac{1+2+3+4+M}{5}=\frac{10+M}{5}.
+    \]
+    Para la varianza muestral:
+    \[
+        \sum_{i=1}^n x_i^2 = 1^2+2^2+3^2+4^2+M^2 = 30 + M^2,
+    \]
+    y
+    \[
+        s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i-\overline{x})^2
+        = \frac{1}{n-1}\Big( \sum_{i=1}^n x_i^2 - n\overline{x}^2\Big).
+    \]
+    Por lo tanto:
+    \[
+        \begin{aligned}
+            s^2
+             & = \frac{1}{4}\Big(30+M^2 - 5\Big(\frac{10+M}{5}\Big)^2\Big) \\
+             & =\frac{1}{5}M^2 - M + \frac{5}{2}.
+        \end{aligned}
+    \]
+    Así la desviación estándar muestral es
+    \[
+        s=\sqrt{\frac{1}{5}M^2 - M + \frac{5}{2}}.
+    \]
+    Por otro lado para la mediana, ordenando la muestra: \(1,2,3,4,M\), dado que son impares tenemos que
+    \[
+        m=\operatorname{median}(x)=3,
+    \]
+    independiente de \(M\).
 
-Para el rango intercuartílico usamos la convención de dividir excluyendo la mediana (ya que \(n\) es impar):
-\[
-\text{mitad inferior}=\{1,2\}\quad\Rightarrow\quad Q_1=\frac{1+2}{2}=1.5,
-\]
-\[
-\text{mitad superior}=\{4,M\}\quad\Rightarrow\quad Q_3=\frac{4+M}{2}.
-\]
-Así
-\[
-\mathrm{RIQ}=Q_3-Q_1=\frac{4+M}{2}-1.5=\frac{M+1}{2}.
-\]
-Cuando \(M\to\infty\),
-\[
-\mathrm{RIQ}\sim \frac{1}{2}M \to \infty.
-\]
+    Para el rango intercuartílico usamos la convención de dividir excluyendo la mediana (ya que \(n\) es impar):
+    \[
+        \text{mitad inferior}=\{1,2\}\quad\Rightarrow\quad Q_1=\frac{1+2}{2}=1.5,
+    \]
+    \[
+        \text{mitad superior}=\{4,M\}\quad\Rightarrow\quad Q_3=\frac{4+M}{2}.
+    \]
+    Así
+    \[
+        \mathrm{RIQ}=Q_3-Q_1=\frac{4+M}{2}-1.5=\frac{M+1}{2}.
+    \]
+    Cuando \(M\to\infty\),
+    \[
+        \mathrm{RIQ}\sim \frac{1}{2}M \to \infty.
+    \]
 
 
 
@@ -651,142 +651,159 @@ Cuando \(M\to\infty\),
 
 \newpage
 \begin{ejercicio}{11}
-Propiedades de la transformación Box--Cox
-Sea $y^{(\lambda)}$ la transformación de Box--Cox definida como:
+    Propiedades de la transformación Box--Cox
+    Sea $y^{(\lambda)}$ la transformación de Box--Cox definida como:
 
-\[
-y^{(\lambda)} = 
-\begin{cases}
-\frac{y^\lambda - 1}{\lambda}, & \lambda \neq 0 \\
-\log(x), & \lambda = 0
-\end{cases}
-\]
+    \[
+        y^{(\lambda)} =
+        \begin{cases}
+            \frac{y^\lambda - 1}{\lambda}, & \lambda \neq 0, \\
+            \log(x),                       & \lambda = 0,
+        \end{cases} \quad y>0,
+    \]
 
-a) Demuestre que $\lim_{\lambda\to 0} y^{(\lambda)} = \log(y)$.
+    a) Demuestre que $\lim_{\lambda\to 0} y^{(\lambda)} = \log(y)$.
 
-b) Proponga un ejemplo numérico donde $y$ toma valores muy dispersos y compare el efecto de $\lambda=1$ (sin transformación) frente a $\lambda=0$ (logaritmo).
+    b) Proponga un ejemplo numérico donde $y$ toma valores muy dispersos y compare el efecto de $\lambda=1$ (sin transformación) frente a $\lambda=0$ (logaritmo).
 \end{ejercicio}
 
+\begin{demostracion}{Demostración}
+    \renewcommand{\labelenumi}{\alph{enumi})}
+    \begin{enumerate}
+        \item Sea $y > 0$, entonces tenemos que $y^\lambda = e^{\lambda \ln{y}}$, por lo cual podemos notar que
+              \begin{align*}
+                  y^{(\lambda)} & = \frac{y^\lambda - 1}{\lambda} = \frac{e^{\lambda \ln{y}} -1 }{\lambda} = \frac{1}{\lambda} \paren{\sum_{k=0}^\infty \frac{\paren{\lambda \ln{y}}^k }{k!} -1} = \frac{1}{\lambda} \paren{ 1 + \lambda \ln{y} + \sum_{k=2}^\infty \frac{\paren{\lambda \ln{y}}^k }{k!} -1} \\
+                                & = \ln{y} +  \frac{1}{\lambda} \paren{ \sum_{k=2}^\infty \frac{\paren{\lambda \ln{y}}^k }{k!}} = \ln{y} +   \paren{ \sum_{k=2}^\infty \frac{\lambda^{k-1} \paren{\ln{y}}^k }{k!}},
+              \end{align*}
+              luego, por convergencia dominada tenemos que
+              \begin{align*}
+                  \lim_{\lambda\to 0} y^{(\lambda)} & = \lim_{\lambda\to 0} \paren{\ln{y} +   \paren{ \sum_{k=2}^\infty \frac{\lambda^{k-1} \paren{\ln{y}}^k }{k!}}} = \ln{y} +  \lim_{\lambda\to 0} \paren{ \sum_{k=2}^\infty \frac{\lambda^{k-1} \paren{\ln{y}}^k }{k!}} \\
+                                                    & = \ln{y} + \paren{ \sum_{k=2}^\infty \lim_{\lambda\to 0} \frac{\lambda^{k-1} \paren{\ln{y}}^k }{k!}}                                                                                                                 \\
+                                                    & = \ln{y},
+              \end{align*}
+              como queremos.
+    \end{enumerate}
+\end{demostracion}
 \newpage
 \begin{ejercicio}{12}
-Propiedades del histograma. Sea $x_{1},\ldots,x_{n}$ una muestra i.i.d. de una variable aleatoria continua con densidad $f(x)$. Considere el histograma con $k$ intervalos de ancho $h$ y estimador: 
-\[
-\hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} \mathbf{1}\{x_i \in I_j\}, \quad x \in I_j.
-\]
+    Propiedades del histograma. Sea $x_{1},\ldots,x_{n}$ una muestra i.i.d. de una variable aleatoria continua con densidad $f(x)$. Considere el histograma con $k$ intervalos de ancho $h$ y estimador:
+    \[
+        \hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} \mathbf{1}\{x_i \in I_j\}, \quad x \in I_j.
+    \]
 
-a) Pruebe que $\hat{f}_{h}(x) \geq 0$ para todo $x$.
+    a) Pruebe que $\hat{f}_{h}(x) \geq 0$ para todo $x$.
 
-b) Demuestre que $\int_{-\infty}^{\infty} \hat{f}_{h}(x) dx = 1$.
+    b) Demuestre que $\int_{-\infty}^{\infty} \hat{f}_{h}(x) dx = 1$.
 
-c) Discuta cómo afecta al histograma elegir $h$ muy grande o muy pequeño en términos de sesgo y varianza.
+    c) Discuta cómo afecta al histograma elegir $h$ muy grande o muy pequeño en términos de sesgo y varianza.
 \end{ejercicio}
 \begin{demostracion}{Demostración:}
-Sea \(x_1,\dots,x_n\) i.i.d. con densidad \(f\),  \(\{I_j\}_{j=1}^k\) una partición de ancho \(h\)\\
-Para un \(x\) fijo, el número de observaciones en cada \(I_j\) es no negativo, por lo tanto $\hat{f}_h(x)\geq0$\\
+    Sea \(x_1,\dots,x_n\) i.i.d. con densidad \(f\),  \(\{I_j\}_{j=1}^k\) una partición de ancho \(h\)\\
+    Para un \(x\) fijo, el número de observaciones en cada \(I_j\) es no negativo, por lo tanto $\hat{f}_h(x)\geq0$\\
 
-Por otro lado, tenemos que integrando \(\hat f_h\) sobre \(\mathbb{R}\) 
-\begin{align*}
-    \int_{-\infty}^{\infty}\hat f_h(x)\,dx
-&= \sum_{j=1}^k \int_{I_j} \frac{1}{n h}\sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx
-\end{align*}
-Dado un intervalo \(I_j\), ya conocemos cuantas observaciones están en ese intervalo, digamos $N_j$, así:
-\[
-\int_{I_j}\frac{1}{n h} \sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx
-= \frac{1}{n h} \int_{I_j}N_jdx
-\]
-Notemos que esta integral es sobre un intervalo $I_j=(a_j,b_j)$ de ancho h:
-\[
-|I_j|=b_j-a_j=h\quad j=1,2,..,k
-\]
-Entonces tenemos que:
-\[
-\int_{I_j}\frac{1}{n h} \sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx=\dfrac{1}{nh}N_jh
-\]
-Por lo que:
-\[
-\int_{-\infty}^{\infty}\hat f_h(x)\,dx = \sum_{j=1}^k \frac{N_j}{n} = \frac{1}{n}\sum_{j=1}^k N_j = \frac{n}{n}=1,
-\]
-Para analizar el efecto del parámetro $h$, observe que cuando $h$ es grande, los intervalos $I_j$ contienen muchas observaciones. En el caso extremo $h \to \infty$, todas las observaciones quedarían en un solo intervalo, y el histograma se aproximaría a una distribución uniforme, lo que induce conclusiones erróneas sobre la forma de la verdadera densidad. 
+    Por otro lado, tenemos que integrando \(\hat f_h\) sobre \(\mathbb{R}\)
+    \begin{align*}
+        \int_{-\infty}^{\infty}\hat f_h(x)\,dx
+         & = \sum_{j=1}^k \int_{I_j} \frac{1}{n h}\sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx
+    \end{align*}
+    Dado un intervalo \(I_j\), ya conocemos cuantas observaciones están en ese intervalo, digamos $N_j$, así:
+    \[
+        \int_{I_j}\frac{1}{n h} \sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx
+        = \frac{1}{n h} \int_{I_j}N_jdx
+    \]
+    Notemos que esta integral es sobre un intervalo $I_j=(a_j,b_j)$ de ancho h:
+    \[
+        |I_j|=b_j-a_j=h\quad j=1,2,..,k
+    \]
+    Entonces tenemos que:
+    \[
+        \int_{I_j}\frac{1}{n h} \sum_{i=1}^n \mathbf{1}\{x_i\in I_j\}\,dx=\dfrac{1}{nh}N_jh
+    \]
+    Por lo que:
+    \[
+        \int_{-\infty}^{\infty}\hat f_h(x)\,dx = \sum_{j=1}^k \frac{N_j}{n} = \frac{1}{n}\sum_{j=1}^k N_j = \frac{n}{n}=1,
+    \]
+    Para analizar el efecto del parámetro $h$, observe que cuando $h$ es grande, los intervalos $I_j$ contienen muchas observaciones. En el caso extremo $h \to \infty$, todas las observaciones quedarían en un solo intervalo, y el histograma se aproximaría a una distribución uniforme, lo que induce conclusiones erróneas sobre la forma de la verdadera densidad.
 
-Por otro lado, si $h \to 0$, cada intervalo contendrá a lo más una observación, produciendo un histograma extremadamente irregular y con gran variabilidad. 
-Así, $h$ demasiado grande incrementa el sesgo, mientras que un $h$ demasiado pequeño incrementa la varianza. De ahí la importancia de elegir un valor de $h$ que logre un equilibrio entre sesgo y varianza.
+    Por otro lado, si $h \to 0$, cada intervalo contendrá a lo más una observación, produciendo un histograma extremadamente irregular y con gran variabilidad.
+    Así, $h$ demasiado grande incrementa el sesgo, mientras que un $h$ demasiado pequeño incrementa la varianza. De ahí la importancia de elegir un valor de $h$ que logre un equilibrio entre sesgo y varianza.
 
 \end{demostracion}
 
 \newpage
 \begin{ejercicio}{13}
-Estimación de densidad kernel (KDE). Sea
-\[
-\hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right),
-\]
-con kernel $K$ integrable, $\int K(u) du = 1$, $\int uK(u) du = 0$, y segundo momento finito $\mu_2(K) = \int u^2 K(u) du$.
-
-\begin{itemize}
-    \item \textbf{Normalización}: Demuestre que $\int_{-\infty}^{\infty} \hat{f}_{h}(x) dx = 1$.
-    \item \textbf{No negatividad}: Muestre que $\hat{f}_{h}(x) \geq 0$ si $K(u) \geq 0$ para todo $u$.
-    \item \textbf{Sesgo puntual}: Usando expansión de Taylor de $f$ alrededor de $x$, derive que
+    Estimación de densidad kernel (KDE). Sea
     \[
-    \mathbb{E}\{\hat{f}_{h}(x)\} - f(x) = \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
+        \hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right),
     \]
-\end{itemize}
+    con kernel $K$ integrable, $\int K(u) du = 1$, $\int uK(u) du = 0$, y segundo momento finito $\mu_2(K) = \int u^2 K(u) du$.
+
+    \begin{itemize}
+        \item \textbf{Normalización}: Demuestre que $\int_{-\infty}^{\infty} \hat{f}_{h}(x) dx = 1$.
+        \item \textbf{No negatividad}: Muestre que $\hat{f}_{h}(x) \geq 0$ si $K(u) \geq 0$ para todo $u$.
+        \item \textbf{Sesgo puntual}: Usando expansión de Taylor de $f$ alrededor de $x$, derive que
+              \[
+                  \mathbb{E}\{\hat{f}_{h}(x)\} - f(x) = \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
+              \]
+    \end{itemize}
 \end{ejercicio}
 
 \begin{demostracion}{Demostración:}
-Dada la estimación de densidad:
-\[
-\hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right),
-\]
+    Dada la estimación de densidad:
+    \[
+        \hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right),
+    \]
     \begin{align*}
-\int_{-\infty}^{\infty}\hat{f_h} (x)&=
-\int_{-\infty}^{\infty} \frac{1}{nh} \sum_{i=1}^n K\left( \frac{x - X_i}{h} \right)dx\\
-&=\dfrac{1}{nh}\sum_{i=1}^n\int_{-\infty}^{\infty}K\left( \frac{x - X_i}{h} \right)dx\\
-&=\dfrac{1}{nh}\sum_{i=1}^n h\int_{-\infty}^{\infty}K\left(u\right)du\\
-\end{align*}
-Como se cumple que:
-\[
-\int_\mathbb{R}K(u)du=1
-\]
-Concluimos que:
-\[
-\int_{-\infty}^\infty \hat{f}_h(x)dx=\dfrac{1}{nh}\sum_{i=1}^n h=1 \\
-\]
-Es decir la función $f(x)$ esta normalizada.
-Por otro lado tenemos que dado a que:
-\[
-K(u)\geq0 \quad\forall u\implies  \hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right)\geq0
-\]
-Así $\hat{f}(x)_h$ es no negativa.\\
-Ahora notemos que, usando la expansaión de Taylor de $f$ alrededor de $x$
-        \[
-            f(x - hu) = f(x) - hu f'(x) + \frac{h^2 u^2}{2} f''(x) + o(h^2).
-        \]
-        La esperanza del estimador:
-              \begin{align*}
-            \mathbb{E}[\hat{f}_h(x)] 
-            &= \frac{1}{h} \mathbb{E}\left[ K\left( \frac{x - X}{h} \right) \right] \\
-            &= \frac{1}{h} \int K\left( \frac{x - t}{h} \right) f(t)  dt \\
-            &= \int K(u) f(x - hu)  du 
-        \end{align*}
-        Sustituyendo:
-        \begin{align*}
-            \mathbb{E}[\hat{f}_h(x)] 
-            &= \int K(u) \left[ f(x) - hu f'(x) + \frac{h^2 u^2}{2} f''(x) + o(h^2) \right] du \\
-            &= f(x) \int K(u)  du - h f'(x) \int u K(u)  du + \frac{h^2}{2} f''(x) \int u^2 K(u)  du + o(h^2).
-        \end{align*}
-        Usando las propiedades del kernel:
-        \begin{align*}
-            \int K(u)  du &= 1, \\
-            \int u K(u)  du &= 0, \\
-            \mu_2(K) &= \int u^2 K(u)  du,
-        \end{align*}
-        obtenemos:
-        \[
-            \mathbb{E}[\hat{f}_h(x)] = f(x) + \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
-        \]
-        Por lo tanto, el sesgo es:
-        \[
-            \mathbb{E}[\hat{f}_h(x)] - f(x) = \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
-        \]
+        \int_{-\infty}^{\infty}\hat{f_h} (x) & =
+        \int_{-\infty}^{\infty} \frac{1}{nh} \sum_{i=1}^n K\left( \frac{x - X_i}{h} \right)dx                                       \\
+                                             & =\dfrac{1}{nh}\sum_{i=1}^n\int_{-\infty}^{\infty}K\left( \frac{x - X_i}{h} \right)dx \\
+                                             & =\dfrac{1}{nh}\sum_{i=1}^n h\int_{-\infty}^{\infty}K\left(u\right)du                 \\
+    \end{align*}
+    Como se cumple que:
+    \[
+        \int_\mathbb{R}K(u)du=1
+    \]
+    Concluimos que:
+    \[
+        \int_{-\infty}^\infty \hat{f}_h(x)dx=\dfrac{1}{nh}\sum_{i=1}^n h=1 \\
+    \]
+    Es decir la función $f(x)$ esta normalizada.
+    Por otro lado tenemos que dado a que:
+    \[
+        K(u)\geq0 \quad\forall u\implies  \hat{f}_{h}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right)\geq0
+    \]
+    Así $\hat{f}(x)_h$ es no negativa.\\
+    Ahora notemos que, usando la expansaión de Taylor de $f$ alrededor de $x$
+    \[
+        f(x - hu) = f(x) - hu f'(x) + \frac{h^2 u^2}{2} f''(x) + o(h^2).
+    \]
+    La esperanza del estimador:
+    \begin{align*}
+        \mathbb{E}[\hat{f}_h(x)]
+         & = \frac{1}{h} \mathbb{E}\left[ K\left( \frac{x - X}{h} \right) \right] \\
+         & = \frac{1}{h} \int K\left( \frac{x - t}{h} \right) f(t)  dt            \\
+         & = \int K(u) f(x - hu)  du
+    \end{align*}
+    Sustituyendo:
+    \begin{align*}
+        \mathbb{E}[\hat{f}_h(x)]
+         & = \int K(u) \left[ f(x) - hu f'(x) + \frac{h^2 u^2}{2} f''(x) + o(h^2) \right] du                 \\
+         & = f(x) \int K(u)  du - h f'(x) \int u K(u)  du + \frac{h^2}{2} f''(x) \int u^2 K(u)  du + o(h^2).
+    \end{align*}
+    Usando las propiedades del kernel:
+    \begin{align*}
+        \int K(u)  du   & = 1,                 \\
+        \int u K(u)  du & = 0,                 \\
+        \mu_2(K)        & = \int u^2 K(u)  du,
+    \end{align*}
+    obtenemos:
+    \[
+        \mathbb{E}[\hat{f}_h(x)] = f(x) + \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
+    \]
+    Por lo tanto, el sesgo es:
+    \[
+        \mathbb{E}[\hat{f}_h(x)] - f(x) = \frac{h^2}{2} \mu_2(K) f''(x) + o(h^2).
+    \]
 
 \end{demostracion}
 
