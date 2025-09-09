@@ -1,0 +1,126 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{caption}
+\usepackage{amsthm}
+\usepackage{url}
+\tcbuselibrary{breakable}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+
+% Entorno para ejercicios con recuadro azul
+\newtcolorbox{ejercicio}[1]{
+    colback=white!8, colframe=blue!5!black,
+    boxrule=0.75pt, arc=5pt, boxsep=10pt,
+    title={\textbf{Ejercicio #1}}, fonttitle=\bfseries,
+    breakable,
+    before upper={\parindent15pt} % Añade sangría al texto
+}
+
+% Entorno para demostraciones con recuadro verde
+\newtcolorbox{demostracion}[1]{
+    colback=blue!5, colframe=gray!50!black,
+    boxrule=0.75pt, arc=5pt, boxsep=10pt,
+    title={\textbf{#1}}, fonttitle=\bfseries,
+    breakable
+}
+
+\providecommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+\providecommand{\paren}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\corche}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\E}[1]{\mathbb{E}\left[#1\right]} % Esperanza
+\newcommand{\LG}[1]{\mathcal{L}\left[#1\right]} % Transformada de Laplace
+\newcommand{\LGV}[1]{\mathbb{L}\left[#1\right]} %
+\newcommand{\V}[1]{\mathbb{V}\left[#1\right]} % Varianza
+\newcommand{\COV}[2]{\mathbb{COV}\left[#1, #2\right]} % Covarianza
+\NewDocumentCommand{\VA}{m}{\mathbf{#1}}
+
+%----------HEADING-----------------
+\begin{document}
+
+\begin{tcolorbox}[colback=gray!10, colframe=black, boxrule=0.5pt, arc=5pt, boxsep=5pt]
+\begin{tabularx}{\linewidth}{X r}
+  \begin{tabular}[t]{@{}l@{}}
+    \textbf{Introducción a la Ciencia de Datos} \\
+    \textbf{Tarea I}
+  \end{tabular}
+  &\textbf{Antonio Barragán}\\
+  &\textbf{Hazel Sánchez}\\
+   & \textbf{Omar García Ramos} \\
+\end{tabularx}
+\end{tcolorbox}
+
+
+
+\section*{Descripción de la base de datos}
+
+El conjunto de datos está organizado en un \texttt{DataFrame} con \textbf{415 observaciones} (filas) y \textbf{26 variables} (columnas).
+Contiene información sobre sitios de muestreo de árboles en Europa y sus registros isotópicos ($\delta^{13}C$) a lo largo de varios años.
+Los valores faltantes se indican como \texttt{NA}.
+
+\subsection*{Estructura de las variables}
+
+\begin{table}[H]
+    \centering
+    \caption{Estructura del DataFrame (\texttt{df.info()})}
+    \label{tab:info}
+    \begin{tabular}{|r|l|r|l|}
+        \hline
+        \# & Variable & Valores no nulos & Tipo de dato \\
+        \hline
+        0   & Site Code & 415 & object \\
+        1   & BRO       & 111 & object \\
+        2   & CAV       & 374 & object \\
+        3   & CAZ       & 412 & object \\
+        4   & COL       & 289 & object \\
+        5   & DRA       & 235 & object \\
+        6   & FON       & 292 & object \\
+        7   & GUT       & 412 & object \\
+        8   & ILO       & 412 & object \\
+        9   & INA       & 412 & object \\
+        10  & AHI       & 293 & object \\
+        11  & LAI       & 201 & object \\
+        12  & LIL       & 408 & object \\
+        13  & LOC       & 264 & object \\
+        14  & NIE1      & 413 & object \\
+        15  & NIE2      & 413 & object \\
+        16  & PAN       & 412 & object \\
+        17  & PED       & 410 & object \\
+        18  & POE       & 412 & object \\
+        19  & REN       & 376 & object \\
+        20  & SER       & 409 & object \\
+        21  & SUW       & 414 & object \\
+        22  & VIG       & 337 & object \\
+        23  & VIN       & 159 & object \\
+        24  & WIN       & 244 & object \\
+        25  & WOB       & 408 & object \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+\subsection*{Clasificación de las variables según su escala de medición}
+
+A continuación se presenta la clasificación de cada variable de la base de datos según su escala de medición. Se incluye una breve explicación del porqué de cada clasificación.
+
+\begin{itemize}
+    \item \textbf{Site Code}: Nominal.
+    Se trata de un identificador de los sitios de muestreo, por lo que no posee un orden ni valor numérico significativo.
+
+    \item \textbf{BRO}: Razón ($\delta$13C).
+    Representa valores isotópicos medidos, donde el cero tiene un significado absoluto y las diferencias entre valores son significativas.
+
+    \item Continuara...
+
+\end{itemize}
+
+
+\end{document}
