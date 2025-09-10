@@ -64,97 +64,205 @@
 
 \section{Descripción de la base de datos}
 
-El conjunto de datos está organizado en un \texttt{DataFrame} con \textbf{415 observaciones} (filas) y \textbf{26 variables} (columnas).
-Contiene información sobre sitios de muestreo de árboles en Europa y sus registros isotópicos ($\delta^{13}C$) a lo largo de varios años.
-Los valores faltantes se indican como \texttt{NA}.
+\subsection*{Origen de los datos}
 
-\subsection*{Estructura de las variables}
+Estos datos forman parte del proyecto ISONET, que recopila isótopos estables de
+carbono ($\delta^{13}C$) en celulosa de anillos de árboles de toda Europa. El
+objetivo es estudiar el clima y la eficiencia en el uso del agua de los bosques
+durante los últimos 400 años.
 
-Estadisticas basicas
-\begin{table}[ht]
-    \centering
-    \caption{Estadísticas descriptivas de los datos}
-    \label{tab:estadisticas_basicas}
-    \begin{tabular}{|l|c|c|c|c|}
-        \hline
-        & count & unique & top & freq \\
-        \hline
-        Site Code & 415 & 415 & Site  name & 1 \\
-        BRO & 111 & 38 & -25,5 & 10 \\
-        CAV  & 374 & 39 & -24,2 & 38 \\
-        CAZ  & 412 & 41 & -20,7 & 35 \\
-        COL    & 289 & 31 & -21,0 & 37 \\
-        DRA  & 235 & 50 & -23,8 & 18 \\
-        FON  & 292 & 148 & -24,20 & 7 \\
-        GUT  & 412 & 193 & -23,07 & 6 \\
-        ILO & 412 & 45 & -23,4 & 36 \\
-        INA  & 412 & 40 & -24,7 & 34 \\
-        AHI & 293 & 53 & -24,3 & 21 \\
-        LAI  & 201 & 45 & -25,5 & 13 \\
-        LIL & 408 & 47 & -21,9 & 23 \\
-        LOC  & 264 & 41 & -26,6 & 21 \\
-        NIE1 & 413 & 258 & NA  & 27 \\
-        NIE2 & 413 & 50 & -23,1 & 32 \\
-        PAN  & 412 & 118 & NA  & 216 \\
-        PED  & 410 & 187 & -21,77 & 6 \\
-        POE  & 412 & 55 & -23,4 & 24 \\
-        REN  & 376 & 235 & -25,34 & 5 \\
-        SER & 409 & 46 & -22,0 & 34 \\
-        SUW  & 414 & 49 & -23,3 & 22 \\
-        VIG  & 337 & 40 & -23,2 & 30 \\
-        VIN  & 159 & 46 & -22,4 & 15 \\
-        WIN & 244 & 40 & -23,1 & 21 \\
-        WOB  & 408 & 54 & -25,6 & 27 \\
-        \hline
-    \end{tabular}
-\end{table}
+\subsection*{Estructura de los datos}
 
-%===============================================================================
+El conjunto de datos está organizado en un \texttt{DataFrame} con
+\textbf{415 observaciones} (filas) y \textbf{26 variables} (columnas).
+Contiene información sobre sitios de muestreo de árboles en Europa y sus
+registros isotópicos ($\delta^{13}C$) a lo largo de varios años. Los valores
+faltantes se indican como \texttt{NA}.
+
+\begin{itemize}
+    \item \textbf{Filas:} Cada fila representa un año, desde aproximadamente el
+    año 1600 hasta 1995 (primeras 10 filas de metadatos).
+
+    \item \textbf{Columnas:} Cada columna representa un sitio de muestreo en
+    Europa.
+\end{itemize}
+
+\subsection*{Metadatos}
+
+Sacamos los metadatos de cada variable de las primera 10 filas (incluyendo los indices) del DataFrame y
+obtenemos la siguiente tabla (por practicidad ha sido rotada y dividida).
 
 \begin{table}[ht]
-    \centering
-    \caption{Tipos de datos, valores no nulos y faltantes por columna}
-    \label{tab:info_datos}
-    \begin{tabular}{|l|c|c|c|c|}
-        \hline
-        Columna & Tipo & No nulos & Valores faltantes & Porcentaje faltante \\
-        \hline
-        Site Code & object & 415 & 0 & 0.000000 \\
-        BRO & object & 111 & 304 & 73.253012 \\
-        CAV  & object & 374 & 41 & 9.879518 \\
-        CAZ  & object & 412 & 3 & 0.722892 \\
-        COL    & object & 289 & 126 & 30.361446 \\
-        DRA  & object & 235 & 180 & 43.373494 \\
-        FON  & object & 292 & 123 & 29.638554 \\
-        GUT  & object & 412 & 3 & 0.722892 \\
-        ILO & object & 412 & 3 & 0.722892 \\
-        INA  & object & 412 & 3 & 0.722892 \\
-        AHI & object & 293 & 122 & 29.397590 \\
-        LAI  & object & 201 & 214 & 51.566265 \\
-        LIL & object & 408 & 7 & 1.686747 \\
-        LOC  & object & 264 & 151 & 36.385542 \\
-        NIE1 & object & 413 & 2 & 0.481928 \\
-        NIE2 & object & 413 & 2 & 0.481928 \\
-        PAN  & object & 412 & 3 & 0.722892 \\
-        PED  & object & 410 & 5 & 1.204819 \\
-        POE  & object & 412 & 3 & 0.722892 \\
-        REN  & object & 376 & 39 & 9.397590 \\
-        SER & object & 409 & 6 & 1.445783 \\
-        SUW  & object & 414 & 1 & 0.240964 \\
-        VIG  & object & 337 & 78 & 18.795181 \\
-        VIN  & object & 159 & 256 & 61.686747 \\
-        WIN & object & 244 & 171 & 41.204819 \\
-        WOB  & object & 408 & 7 & 1.686747 \\
-        \hline
-    \end{tabular}
+	\centering
+	\caption{Metadatos - Información básica de los sitios}
+	\label{tab:metadatos1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		index & Site name & Country & Latitude & Longitude & Species \\
+		\hline
+		BRO & Bromarv & Finland & 60.00 & 23.08 & Quercus robur \\
+		CAV & Cavergno & Switzerland & 46.35 & 8.6 & Quercus petraea \\
+		CAZ & Cazorla & Spain & 37.93 & -2.97 & Pinus nigra \\
+		COL & Col Du Zad & Morocco & 32.97 & -5.07 & Cedrus atlantica \\
+		DRA & Dransfeld & Germany & 51.51 & 9.78 & Quercus petraea \\
+		FON & Fontainebleau & France & 48.38 & 2.67 & Quercus petraea \\
+		GUT & Gutuli & Norway & 62.00 & 12.18 & Pinus sylvestris \\
+		ILO & Sivakkovaara & Finland & 62.98 & 31.27 & Pinus sylvestris \\
+		INA & Inari & Finland & 68.93 & 28.31 & Pinus sylvestris \\
+		%AHI & Perchtoldsdorf Wehrturm, Gaaden Glockenturm, Klosterneuburg Glockenturm & Austria & 48.25 & 16.77 & Quercus petraea \\
+		AHI & Perchtold... & Austria & 48.25 & 16.77 & Quercus petraea \\
+		LAI & Lainzer Tiergarten & Austria & 48.18 & 16.20 & Quercus petraea \\
+		LIL & Pinar de Lillo & Spain & 43.07 & -5.25 & Pinus sylvestris \\
+		LOC & Lochwood & United Kingdom & 55.27 & -3.43 & Quercus petraea \\
+		NIE1 & Niepolomice & Poland & 50.03 & 20.35 & Quercus robur \\
+		NIE2 & Niepolomice & Poland & 50.03 & 20.35 & Pinus sylvestris \\
+		PAN & Panemunes & Lithuania & 54.09 & 23.96 & Pinus sylvestris \\
+		PED & Pedraforca & Spain & 42.23 & 1.70 & Pinus uncinata \\
+		POE & Poellau & Austria & 47.31 & 15.81 & Pinus nigra \\
+		REN & Renn & France & 48.02 & -1.83 & Quercus robur \\
+		SER & Monte Pollino & Italy & 39.93 & 16.21 & Pinus leucodermis \\
+		SUW & Suwalki & Poland & 53.95 & 23.25 & Pinus sylvestris \\
+		VIG & Vigera & Switzerland & 46.05 & 8.77 & Pinus sylvestris \\
+		VIN & Vinuesa & Spain & 42.00 & 2.75 & Pinus uncinata \\
+		WIN & Windsor & United Kingdom & 51.43 & -0.61 & Pinus sylvestris \\
+		WOB & Woburn & United Kingdom & 51.98 & -0.59 & Pinus sylvestris \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[ht]
+	\centering
+	\caption{Metadatos - Información temporal y de referencia}
+	\label{tab:metadatos2}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		index & First year CE & Last year CE & elevation a.s.l. & Year CE \\
+		\hline
+		BRO & 1901 & 2002 & 5 & 13CVPDB \\
+		CAV & 1637 & 2002 & 900 & 13CVPDB \\
+		CAZ & 1600 & 2002 & 1820 & 13CVPDB \\
+		COL & 1600 & 2000 & 2200 & 13CVPDB \\
+		DRA & 1776 & 1999 & 320 & 13CVPDB \\
+		FON & 1600 & 2000 & 100 & 13CVPDB \\
+		GUT & 1600 & 2003 & 800 & 13CVPDB \\
+		ILO & 1600 & 2002 & 200 & 13CVPDB \\
+		INA & 1600 & 2002 & 150 & 13CVPDB \\
+		AHI & 1600 & 1883 & n.s. & 13CVPDB \\
+		LAI & 1812 & 2003 & 300 & 13CVPDB \\
+		LIL & 1600 & 2002 & 1600 & 13CVPDB \\
+		LOC & 1749 & 2003 & 175 & 13CVPDB \\
+		NIE1 & 1627 & 2003 & 190 & 13CVPDB \\
+		NIE2 & 1627 & 2003 & 190 & 13CVPDB \\
+		PAN & 1816 & 2002 & 45 & 13CVPDB \\
+		PED & 1600 & 2003 & 2120 & 13CVPDB \\
+		POE & 1600 & 2002 & 500 & 13CVPDB \\
+		REN & 1611 & 1998 & 100 & 13CVPDB \\
+		SER & 1604 & 2003 & 1900 & 13CVPDB \\
+		SUW & 1600 & 2004 & 160 & 13CVPDB \\
+		VIG & 1675 & 2003 & 1400 & 13CVPDB \\
+		VIN & 1850 & 1999 & 1950 & 13CVPDB \\
+		WIN & 1763 & 2003 & 80 & 13CVPDB \\
+		WOB & 1604 & 2003 & 10 & 13CVPDB \\
+		\hline
+	\end{tabular}
 \end{table}
 
 
+\subsection*{Estadísticas de los datos}
 
+A continuación calculamos las estadísticas básicas sobre los datos y obtenemos.
+
+\begin{table}[ht]
+	\centering
+	\caption{Estadísticas descriptivas de los datos}
+	\label{tab:estadisticas_basicas}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		& count & unique & top & freq \\
+		\hline
+		%Year & 406 & 406 & 1600 & 1 \\
+		BRO & 102 & 29 & -25,5 & 10 \\
+		CAV  & 365 & 30 & -24,2 & 38 \\
+		CAZ  & 403 & 32 & -20,7 & 35 \\
+		COL    & 280 & 22 & -21,0 & 37 \\
+		DRA  & 226 & 41 & -23,8 & 18 \\
+		FON  & 283 & 139 & -24,20 & 7 \\
+		GUT  & 403 & 184 & -23,72 & 6 \\
+		ILO & 403 & 36 & -23,4 & 36 \\
+		INA  & 403 & 31 & -24,7 & 34 \\
+		AHI & 284 & 44 & -24,3 & 21 \\
+		LAI  & 192 & 36 & -25,5 & 13 \\
+		LIL & 399 & 39 & -21,9 & 23 \\
+		LOC  & 255 & 32 & -26,6 & 21 \\
+		NIE1 & 404 & 249 & NA  & 27 \\
+		NIE2 & 404 & 41 & -23,1 & 32 \\
+		PAN  & 403 & 109 & NA  & 216 \\
+		PED  & 401 & 178 & -22,04 & 6 \\
+		POE  & 403 & 46 & -23,7 & 24 \\
+		REN  & 367 & 226 & -25,34 & 5 \\
+		SER & 400 & 37 & -22,0 & 34 \\
+		SUW  & 405 & 40 & -23,3 & 22 \\
+		VIG  & 328 & 31 & -23,2 & 30 \\
+		VIN  & 150 & 37 & -22,4 & 15 \\
+		WIN & 235 & 31 & -23,1 & 21 \\
+		WOB  & 399 & 45 & -25,6 & 27 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\newpage
 
 \subsection*{Valores Faltantes}
 
-Mostramos una grafica de como se distribuyen los datos faltantes en la tabla. Cada casilla en blanco indica que es un valor faltante (NaN).
+A continuación contamos el numero de valores faltantes y tenemos
+
+\begin{table}
+	\centering
+	\caption{Tipos de datos, valores no nulos y faltantes por columna}
+	\label{tab:info_datos}
+	\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		Columna & Tipo & No nulos & Valores faltantes & Porcentaje faltante \\
+		\hline
+		%Year & object & 406 & 0 & 0.000000 \\
+		BRO & object & 102 & 304 & 74.876847 \\
+		CAV  & object & 365 & 41 & 10.098522 \\
+		CAZ  & object & 403 & 3 & 0.738916 \\
+		COL    & object & 280 & 126 & 31.034483 \\
+		DRA  & object & 226 & 180 & 44.334975 \\
+		FON  & object & 283 & 123 & 30.295567 \\
+		GUT  & object & 403 & 3 & 0.738916 \\
+		ILO & object & 403 & 3 & 0.738916 \\
+		INA  & object & 403 & 3 & 0.738916 \\
+		AHI & object & 284 & 122 & 30.049261 \\
+		LAI  & object & 192 & 214 & 52.709360 \\
+		LIL & object & 399 & 7 & 1.724138 \\
+		LOC  & object & 255 & 151 & 37.192118 \\
+		NIE1 & object & 404 & 2 & 0.492611 \\
+		NIE2 & object & 404 & 2 & 0.492611 \\
+		PAN  & object & 403 & 3 & 0.738916 \\
+		PED  & object & 401 & 5 & 1.231527 \\
+		POE  & object & 403 & 3 & 0.738916 \\
+		REN  & object & 367 & 39 & 9.605911 \\
+		SER & object & 400 & 6 & 1.477833 \\
+		SUW  & object & 405 & 1 & 0.246305 \\
+		VIG  & object & 328 & 78 & 19.211823 \\
+		VIN  & object & 150 & 256 & 63.054187 \\
+		WIN & object & 235 & 171 & 42.118227 \\
+		WOB  & object & 399 & 7 & 1.724138 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\newpage
+
+
+Mostramos una grafica de como se distribuyen los datos faltantes en la tabla.
+Cada casilla en blanco indica que es un valor faltante (NaN).
 
 \begin{figure}[ht]
 	\centering
@@ -163,22 +271,74 @@ Mostramos una grafica de como se distribuyen los datos faltantes en la tabla. Ca
 	\label{fig:faltantes}
 \end{figure}
 
-En la grafica podemos identificar patrones que sugieren que la medición de los datos en ciertas variables falló de manera continua por ciertos periodos, mientras que en otras variables los datos faltantes parecen seguir otra distribución, y finalmente encontramos variables en las cuales los datos faltantes son muy pocos o ninguno.
+\newpage
 
+En la grafica podemos identificar patrones de que la medición de los datos en
+ciertas variables falló de manera continua por ciertos periodos. Estos patrones
+sugieren que algunas mediciones empezaron después de otras o terminaron antes
+que otras. Además, en algunos casos las mediciones sólo tuvieron pausas.
+
+Por otro lado, en otras variables los datos faltantes parecen seguir otra
+distribución que sugieren fallas intermitentes en la medición de los datos, y
+finalmente encontramos variables en las cuales no hay datos faltantes.
+
+En nuestro caso, los \textit{NaN} pueden aparecer porque:
+\begin{itemize}
+    \item No se pudo tomar muestra ese año.
+
+    \item El anillo no estaba presente o no era legible.
+
+    \item No se llegó a ese año en la cronología de ese sitio.
+\end{itemize}
+
+Para el caso en que los datos faltantes sean por fallas intermitentes, el
+análisis suguiere que el anillo no estaba presente o no era legible. Más
+adelante consideraremos como manejar estos datos faltantes.
+
+\newpage
 
 \subsection*{Clasificación de las variables según su escala de medición}
 
-A continuación se presenta la clasificación de cada variable de la base de datos según su escala de medición. Se incluye una breve explicación del porqué de cada clasificación.
+A continuación se presenta la clasificación de cada variable de la base de datos
+según su escala de medición. Se incluye una breve explicación del porqué de cada
+clasificación.
 
+\begin{table}[ht]
+    \centering
+    \caption{Clasificación de variables}
+    \label{tab:clasificacion_variables}
+    \begin{tabular}{|c|c|l|}
+        \hline
+        \textbf{Variable} & \textbf{Tipo} & \textbf{Justificación} \\
+        \hline
+        Site code & Nominal & Categorías sin orden (códigos de sitio) \\
+        Site name & Nominal & Nombres sin orden jerárquico \\
+        Country & Nominal & Países sin orden \\
+        Latitude & Razón & Valor numérico con cero absoluto (grados) \\
+        Longitude & Razón & Valor numérico con cero absoluto (grados) \\
+        Species & Nominal & Nombre de especie sin orden \\
+        Year CE & Intervalar & Años con intervalo constante, pero sin cero
+        absoluto (no hay "año cero") \\
+        $\delta^{13}$C & Razón & Valor numérico medido en $\%_o$\
+        (per mil), con cero absoluto\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Los datos de cada variable se miden en $\delta^{13}C$ que es la relación de isótopos estables de carbono (13C/12C) en la celulosa del anillo de crecimiento. Se expresa en $\%_o$ (per mil) respecto al estándar internacional VPDB.
 \begin{itemize}
-    \item \textbf{Site Code}: Nominal.
-    Se trata de un identificador de los sitios de muestreo, por lo que no posee un orden ni valor numérico significativo.
+	\item Valores más negativos indican mayor fraccionamiento isotópico (ej: más humedad, menos estrés).
 
-    \item \textbf{BRO}: Razón ($\delta$13C).
-    Representa valores isotópicos medidos, donde el cero tiene un significado absoluto y las diferencias entre valores son significativas.
-
-    \item Continuara...
-
+	\item Valores menos negativos indican menor fraccionamiento (ej: sequía, mayor eficiencia en el uso del agua).
 \end{itemize}
+
+
+\subsection*{Outliers}
+
+
+
+
+
+
 
 \end{document}

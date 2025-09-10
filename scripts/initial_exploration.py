@@ -25,15 +25,45 @@ if __name__ == "__main__":
     print("\n%" + "="*79 + "\n")
 
 
+    # Primeros y ultimos datos
+    print("Primeros y ultimos datos:\n")
+    print(txt.head(-40))
+    print("\n%" + "="*79 + "\n")
+
+
     # Muestra de cinco datos en LaTeX
     print("Muestra aleatoria de 5 datos:\n")
     print(txt.sample(5))
     print("\n%" + "="*79 + "\n")
+    
+
+    # Separar metadatos y datos
+    meta_data = txt.head(9)
+    data = txt.iloc[9:].reset_index(drop=True)
+    meta_data = meta_data.transpose()   # Transponer los metadatos
+
+    # Renombrar las columnas de los metadatos usando la primera fila
+    meta_data.columns = meta_data.iloc[0]
+    meta_data = meta_data[1:].reset_index()
+
+    # Para los datos, la primera columna es 'Year'
+    data = data.rename(columns={data.columns[0]: 'Year'})
 
 
-    # Estadisticas básicas en LaTeX
+    # Mostramos los metadatos
+    print("Metadatos:\n")
+    print(meta_data.to_latex( # Quitar indices al transponer
+        index=False,
+        caption=r"Metadatos",
+        label=r"tab:metadatos"
+    ))
+    print("\n%" + "="*79 + "\n")
+
+
+    ## Data
+    # Estadisticas basicas en LaTeX
     print("Estadisticas basicas (LaTeX):")
-    print((txt.describe(include="all").T).to_latex( # Transponer para espacio
+    print((data.describe(include="all").T).to_latex( # Transponer para espacio
         float_format="%.3f",   # Formato de números decimales
         caption=r"Estadísticas descriptivas de los datos",
         label=r"tab:estadisticas_basicas"
@@ -42,13 +72,14 @@ if __name__ == "__main__":
 
 
     info = pd.DataFrame({
-        'Columna': txt.columns,
-        'Tipo': txt.dtypes.values,
-        'No nulos': txt.count().values,
-        'Valores faltantes': txt.isna().sum().values,
-        'Porcentaje faltante': txt.isna().sum() / len(txt) * 100
+        'Columna': data.columns,
+        'Tipo': data.dtypes.values,
+        'No nulos': data.count().values,
+        'Valores faltantes': data.isna().sum().values,
+        'Porcentaje faltante': data.isna().sum() / len(data) * 100
     })
     
+    print("Informacion de los datos:\n")
     print(info.to_latex(
         index=False,
         caption=r"Tipos de datos, valores no nulos y faltantes por columna",
@@ -58,7 +89,7 @@ if __name__ == "__main__":
 
     # ver graficamente como se distribuyen los faltantes
     plt.figure(figsize=(10, 8), constrained_layout=True)
-    sns.heatmap(txt.isna(), cbar=False, cmap="gray")
+    sns.heatmap(data.isna(), cbar=False, cmap="gray")
     plt.xticks(rotation=45) ; plt.suptitle("Datos faltantes")
     plt.savefig("./reports/figures/faltantes.png")  # guardar figura
     plt.close()
