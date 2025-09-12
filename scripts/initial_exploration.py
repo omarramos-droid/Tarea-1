@@ -61,6 +61,15 @@ if __name__ == "__main__":
 
 
     ## Data
+
+    ### Convertir a numerico
+    for col in data.columns:
+        data[col] = data[col].astype(str).str.replace(",", ".")
+        data[col] = pd.to_numeric(data[col], errors="coerce")
+    data['Year'] = data['Year'].astype(int)
+
+
+
     # Estadisticas basicas en LaTeX
     print("Estadisticas basicas (LaTeX):")
     print((data.describe(include="all").T).to_latex( # Transponer para espacio
@@ -85,6 +94,7 @@ if __name__ == "__main__":
         caption=r"Tipos de datos, valores no nulos y faltantes por columna",
         label=r"tab:info_datos"
     ))
+    print("\n%" + "="*79 + "\n")
 
 
     # ver graficamente como se distribuyen los faltantes
@@ -92,4 +102,47 @@ if __name__ == "__main__":
     sns.heatmap(data.isna(), cbar=False, cmap="gray")
     plt.xticks(rotation=45) ; plt.suptitle("Datos faltantes")
     plt.savefig("./reports/figures/faltantes.png")  # guardar figura
+    plt.close()
+
+
+    # Ahora aqui busquemos los outliers
+
+    # Boxplots
+    plt.figure(figsize=(10, 8), constrained_layout=True)
+    ax = sns.boxplot(data=data[data.columns[1:]], orient="v")  # No considerar Year
+    plt.xticks(rotation=45) ; plt.suptitle("Boxplots de variables")
+    plt.savefig("./reports/figures/boxplots.png")  # guardar figura
+    plt.close()
+
+    # Obtener los outliers
+    # outliers = {}
+    # for col in data.columns[1:]:
+    #     q1, q3 = data[col].quantile(0.25), data[col].quantile(0.75)
+
+    #     iqr = q3 - q1
+    #     lower_bound = q1 - 1.5 * iqr
+    #     upper_bound = q3 + 1.5 * iqr
+    #     not_outliers = data[col].between(lower_bound, upper_bound,
+    #                                      inclusive=True)
+        
+    #     outliers[col] = ~not_outliers
+
+
+    # vamos a graficar las series
+    fig, axes = plt.subplots(len(data.columns[1:]), 1, constrained_layout=True,
+                             sharex=True)
+    
+    for i, col in enumerate(data.columns[1:]):
+        ax = axes[i]
+        sns.lineplot(data=data, x="Year", y=col, ax=ax)
+    plt.suptitle("Series temporales")
+    #plt.savefig("./reports/figures/series.png")  # guardar figura
+    plt.show() ; plt.close()
+
+    # matriz de correlación entre las variables
+    plt.figure(figsize=(11, 9), constrained_layout=True)
+    sns.heatmap(data[data.columns[1:]].corr(), annot=True, cmap="coolwarm",
+                fmt=".2f")
+    plt.xticks(rotation=45) ; plt.suptitle("Matriz de correlación")
+    plt.savefig("./reports/figures/correlacion.png")  # guardar figura
     plt.close()

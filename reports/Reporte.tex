@@ -89,8 +89,9 @@ faltantes se indican como \texttt{NA}.
 
 \subsection*{Metadatos}
 
-Sacamos los metadatos de cada variable de las primera 10 filas (incluyendo los indices) del DataFrame y
-obtenemos la siguiente tabla (por practicidad ha sido rotada y dividida).
+Sacamos los metadatos de cada variable de las primera 10 filas (incluyendo los
+indices) del DataFrame y obtenemos la siguiente tabla (por practicidad ha sido
+rotada y dividida).
 
 \begin{table}[ht]
 	\centering
@@ -109,7 +110,8 @@ obtenemos la siguiente tabla (por practicidad ha sido rotada y dividida).
 		GUT & Gutuli & Norway & 62.00 & 12.18 & Pinus sylvestris \\
 		ILO & Sivakkovaara & Finland & 62.98 & 31.27 & Pinus sylvestris \\
 		INA & Inari & Finland & 68.93 & 28.31 & Pinus sylvestris \\
-		%AHI & Perchtoldsdorf Wehrturm, Gaaden Glockenturm, Klosterneuburg Glockenturm & Austria & 48.25 & 16.77 & Quercus petraea \\
+		%AHI & Perchtoldsdorf Wehrturm, Gaaden Glockenturm, Klosterneuburg
+        %Glockenturm & Austria & 48.25 & 16.77 & Quercus petraea \\
 		AHI & Perchtold... & Austria & 48.25 & 16.77 & Quercus petraea \\
 		LAI & Lainzer Tiergarten & Austria & 48.18 & 16.20 & Quercus petraea \\
 		LIL & Pinar de Lillo & Spain & 43.07 & -5.25 & Pinus sylvestris \\
@@ -175,43 +177,42 @@ obtenemos la siguiente tabla (por practicidad ha sido rotada y dividida).
 A continuación calculamos las estadísticas básicas sobre los datos y obtenemos.
 
 \begin{table}[ht]
-	\centering
-	\caption{Estadísticas descriptivas de los datos}
-	\label{tab:estadisticas_basicas}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		& count & unique & top & freq \\
-		\hline
-		%Year & 406 & 406 & 1600 & 1 \\
-		BRO & 102 & 29 & -25,5 & 10 \\
-		CAV  & 365 & 30 & -24,2 & 38 \\
-		CAZ  & 403 & 32 & -20,7 & 35 \\
-		COL    & 280 & 22 & -21,0 & 37 \\
-		DRA  & 226 & 41 & -23,8 & 18 \\
-		FON  & 283 & 139 & -24,20 & 7 \\
-		GUT  & 403 & 184 & -23,72 & 6 \\
-		ILO & 403 & 36 & -23,4 & 36 \\
-		INA  & 403 & 31 & -24,7 & 34 \\
-		AHI & 284 & 44 & -24,3 & 21 \\
-		LAI  & 192 & 36 & -25,5 & 13 \\
-		LIL & 399 & 39 & -21,9 & 23 \\
-		LOC  & 255 & 32 & -26,6 & 21 \\
-		NIE1 & 404 & 249 & NA  & 27 \\
-		NIE2 & 404 & 41 & -23,1 & 32 \\
-		PAN  & 403 & 109 & NA  & 216 \\
-		PED  & 401 & 178 & -22,04 & 6 \\
-		POE  & 403 & 46 & -23,7 & 24 \\
-		REN  & 367 & 226 & -25,34 & 5 \\
-		SER & 400 & 37 & -22,0 & 34 \\
-		SUW  & 405 & 40 & -23,3 & 22 \\
-		VIG  & 328 & 31 & -23,2 & 30 \\
-		VIN  & 150 & 37 & -22,4 & 15 \\
-		WIN & 235 & 31 & -23,1 & 21 \\
-		WOB  & 399 & 45 & -25,6 & 27 \\
-		\hline
-	\end{tabular}
+    \centering
+    \caption{Estadísticas descriptivas de los datos}
+    \label{tab:estadisticas_basicas}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+        \hline
+        & count & mean & std & min & 25\% & 50\% & 75\% & max \\
+        \hline
+        %Year & 406.000 & 1802.500 & 117.346 & 1600.000 & 1701.250 & 1802.500 & 1903.750 & 2005.000 \\
+        BRO & 102.000 & -25.505 & 0.671 & -27.200 & -26.000 & -25.500 & -25.000 & -23.800 \\
+        CAV  & 365.000 & -24.122 & 0.489 & -25.500 & -24.400 & -24.200 & -23.800 & -22.500 \\
+        CAZ  & 403.000 & -21.050 & 0.617 & -24.300 & -21.300 & -20.900 & -20.600 & -19.600 \\
+        COL    & 280.000 & -20.756 & 0.435 & -25.300 & -21.000 & -20.800 & -20.500 & -19.600 \\
+        DRA  & 226.000 & -23.788 & 0.856 & -26.000 & -24.300 & -23.800 & -23.300 & -21.000 \\
+        FON  & 283.000 & -24.206 & 0.523 & -26.410 & -24.540 & -24.180 & -23.885 & -22.820 \\
+        GUT  & 403.000 & -23.531 & 0.612 & -26.070 & -23.920 & -23.510 & -23.100 & -21.820 \\
+        ILO & 403.000 & -23.603 & 0.689 & -26.000 & -23.900 & -23.500 & -23.100 & -22.300 \\
+        INA  & 403.000 & -24.783 & 0.586 & -26.400 & -25.100 & -24.700 & -24.400 & -23.400 \\
+        AHI & 284.000 & -24.694 & 0.828 & -27.600 & -25.100 & -24.600 & -24.200 & -22.700 \\
+        LAI  & 192.000 & -25.060 & 0.786 & -27.700 & -25.525 & -25.100 & -24.600 & -23.000 \\
+        LIL & 399.000 & -22.197 & 0.761 & -25.600 & -22.700 & -22.100 & -21.700 & -20.600 \\
+        LOC  & 255.000 & -26.245 & 0.643 & -28.500 & -26.600 & -26.300 & -25.800 & -24.400 \\
+        NIE1 & 377.000 & -25.256 & 1.145 & -28.710 & -25.920 & -25.160 & -24.520 & -20.460 \\
+        NIE2 & 377.000 & -23.443 & 0.809 & -26.100 & -23.700 & -23.300 & -22.900 & -21.600 \\
+        PAN  & 187.000 & -23.452 & 0.431 & -24.760 & -23.715 & -23.390 & -23.180 & -22.280 \\
+        PED  & 401.000 & -22.006 & 0.622 & -24.170 & -22.350 & -22.000 & -21.580 & -20.340 \\
+        POE  & 403.000 & -23.893 & 0.923 & -26.700 & -24.550 & -23.700 & -23.250 & -21.600 \\
+        REN  & 367.000 & -24.435 & 0.870 & -26.680 & -25.115 & -24.280 & -23.720 & -22.640 \\
+        SER & 400.000 & -22.210 & 0.697 & -24.300 & -22.500 & -22.100 & -21.700 & -20.700 \\
+        SUW  & 405.000 & -23.080 & 0.811 & -25.100 & -23.700 & -23.100 & -22.500 & -20.900 \\
+        VIG  & 328.000 & -23.281 & 0.597 & -25.100 & -23.700 & -23.300 & -22.800 & -21.800 \\
+        VIN  & 150.000 & -22.573 & 0.832 & -25.000 & -22.900 & -22.400 & -22.000 & -21.100 \\
+        WIN & 232.000 & -22.852 & 0.594 & -24.200 & -23.300 & -22.900 & -22.400 & -21.300 \\
+        WOB  & 395.000 & -24.976 & 0.851 & -26.900 & -25.600 & -25.100 & -24.400 & -22.200 \\
+        \hline
+    \end{tabular}
 \end{table}
-
 
 \newpage
 
@@ -219,44 +220,43 @@ A continuación calculamos las estadísticas básicas sobre los datos y obtenemo
 
 A continuación contamos el numero de valores faltantes y tenemos
 
-\begin{table}
-	\centering
-	\caption{Tipos de datos, valores no nulos y faltantes por columna}
-	\label{tab:info_datos}
-	\begin{tabular}{|l|c|c|c|c|}
-		\hline
-		Columna & Tipo & No nulos & Valores faltantes & Porcentaje faltante \\
-		\hline
-		%Year & object & 406 & 0 & 0.000000 \\
-		BRO & object & 102 & 304 & 74.876847 \\
-		CAV  & object & 365 & 41 & 10.098522 \\
-		CAZ  & object & 403 & 3 & 0.738916 \\
-		COL    & object & 280 & 126 & 31.034483 \\
-		DRA  & object & 226 & 180 & 44.334975 \\
-		FON  & object & 283 & 123 & 30.295567 \\
-		GUT  & object & 403 & 3 & 0.738916 \\
-		ILO & object & 403 & 3 & 0.738916 \\
-		INA  & object & 403 & 3 & 0.738916 \\
-		AHI & object & 284 & 122 & 30.049261 \\
-		LAI  & object & 192 & 214 & 52.709360 \\
-		LIL & object & 399 & 7 & 1.724138 \\
-		LOC  & object & 255 & 151 & 37.192118 \\
-		NIE1 & object & 404 & 2 & 0.492611 \\
-		NIE2 & object & 404 & 2 & 0.492611 \\
-		PAN  & object & 403 & 3 & 0.738916 \\
-		PED  & object & 401 & 5 & 1.231527 \\
-		POE  & object & 403 & 3 & 0.738916 \\
-		REN  & object & 367 & 39 & 9.605911 \\
-		SER & object & 400 & 6 & 1.477833 \\
-		SUW  & object & 405 & 1 & 0.246305 \\
-		VIG  & object & 328 & 78 & 19.211823 \\
-		VIN  & object & 150 & 256 & 63.054187 \\
-		WIN & object & 235 & 171 & 42.118227 \\
-		WOB  & object & 399 & 7 & 1.724138 \\
-		\hline
-	\end{tabular}
+\begin{table}[ht]
+    \centering
+    \caption{Tipos de datos, valores no nulos y faltantes por columna}
+    \label{tab:info_datos}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Columna & Tipo & No nulos & Valores faltantes & Porcentaje faltante \\
+        \hline
+        %Year & int64 & 406 & 0 & 0.000000 \\
+        BRO & float64 & 102 & 304 & 74.876847 \\
+        CAV  & float64 & 365 & 41 & 10.098522 \\
+        CAZ  & float64 & 403 & 3 & 0.738916 \\
+        COL    & float64 & 280 & 126 & 31.034483 \\
+        DRA  & float64 & 226 & 180 & 44.334975 \\
+        FON  & float64 & 283 & 123 & 30.295567 \\
+        GUT  & float64 & 403 & 3 & 0.738916 \\
+        ILO & float64 & 403 & 3 & 0.738916 \\
+        INA  & float64 & 403 & 3 & 0.738916 \\
+        AHI & float64 & 284 & 122 & 30.049261 \\
+        LAI  & float64 & 192 & 214 & 52.709360 \\
+        LIL & float64 & 399 & 7 & 1.724138 \\
+        LOC  & float64 & 255 & 151 & 37.192118 \\
+        NIE1 & float64 & 377 & 29 & 7.142857 \\
+        NIE2 & float64 & 377 & 29 & 7.142857 \\
+        PAN  & float64 & 187 & 219 & 53.940887 \\
+        PED  & float64 & 401 & 5 & 1.231527 \\
+        POE  & float64 & 403 & 3 & 0.738916 \\
+        REN  & float64 & 367 & 39 & 9.605911 \\
+        SER & float64 & 400 & 6 & 1.477833 \\
+        SUW  & float64 & 405 & 1 & 0.246305 \\
+        VIG  & float64 & 328 & 78 & 19.211823 \\
+        VIN  & float64 & 150 & 256 & 63.054187 \\
+        WIN & float64 & 232 & 174 & 42.857143 \\
+        WOB  & float64 & 395 & 11 & 2.709360 \\
+        \hline
+    \end{tabular}
 \end{table}
-
 
 \newpage
 
@@ -325,15 +325,77 @@ clasificación.
     \end{tabular}
 \end{table}
 
-Los datos de cada variable se miden en $\delta^{13}C$ que es la relación de isótopos estables de carbono (13C/12C) en la celulosa del anillo de crecimiento. Se expresa en $\%_o$ (per mil) respecto al estándar internacional VPDB.
+Los datos de cada variable se miden en $\delta^{13}C$ que es la relación de
+isótopos estables de carbono (13C/12C) en la celulosa del anillo de crecimiento.
+Se expresa en $\%_o$ (per mil) respecto al estándar internacional VPDB.
 \begin{itemize}
-	\item Valores más negativos indican mayor fraccionamiento isotópico (ej: más humedad, menos estrés).
+	\item Valores más negativos indican mayor fraccionamiento isotópico (ej: más
+    humedad, menos estrés).
 
-	\item Valores menos negativos indican menor fraccionamiento (ej: sequía, mayor eficiencia en el uso del agua).
+	\item Valores menos negativos indican menor fraccionamiento (ej: sequía,
+    mayor eficiencia en el uso del agua).
 \end{itemize}
 
 
 \subsection*{Outliers}
+
+Dada la naturaleza de nuestros datos, podemos considerar cada variable (medida
+de $\delta^{13}C$ por localidad) como una serie de tiempo, para tener una mejor
+interpretación de estas series graficamos el comportamiento de las estas series.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.95\linewidth]{figures/series.png}
+	\caption{Grafica de cada serie}
+	\label{}
+\end{figure}
+
+En las graficas de cada variable observamos algunos picos inusuales que pueden
+sugerir la presencia de outliers, sin embargo estos picos ocurren en años
+distintos para cada variable. Por lo cual, en caso de ser estos valores
+outliers, no parecen tener que ver con algún factor físico en el entorno las
+localidades donde se realizaron las mediciones.
+
+Aún así, la observación anterior no es determinante ya que en nuestro caso
+podemos notar que las variables no siguen un comportamiento suficientemente
+similar entre ellas, esto lo vemos a través de la matriz de correlación,
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/correlacion.png}
+	\caption{Matriz de correlación}
+	\label{}
+\end{figure}
+
+\newpage
+
+
+Para buscar algún patrón que refleje ciclos podemos comparar las funciones de
+auto-correlación de cada variable, sin embargo no lo realizaremos.
+
+
+Por otro lado, para continuar con el análisis de outliers consideremos las
+graficas de caja de cada variable.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/boxplots.png}
+	\caption{Grafica de Boxplots}
+	\label{}
+\end{figure}
+
+\newpage
+
+En las graficas de caja notamos que en la mayoría de las localidades, las
+mediciones parecen seguir una distribución simétrica (quizá una distribución
+normal).
+
+Además, notamos que en cada localidad, las mediciones tomadas y que son
+candidatas a ser outliers se encuentran acumuladas por debajo de las otras
+mediciones, esto sugiere fuertemente la existencia de algún otro fenómeno que
+haga que las mediciones sean mas bajas en ciertos años.
+
+
 
 
 
