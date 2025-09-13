@@ -7,13 +7,24 @@ from scipy.linalg import lstsq
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import os
+import seaborn as sns
 
 # =====================
 # 1. CARGA Y PREPARACIÓN DE DATOS
 # =====================
+
+
 def cargar_datos_con_rangos(ruta_archivo):
     ruta_archivo = Path(ruta_archivo)
-    txt = pd.read_excel(ruta_archivo, header=3)
+
+    #detect file extension
+    if "txt" in ruta_archivo.suffix:
+        txt = txt = pd.read_csv(ruta_archivo, encoding='ANSI', sep=None, header=3, engine="python")
+    elif "xlsx" in ruta_archivo.suffix:
+        txt = pd.read_excel(ruta_archivo, header=3)
+    else:
+        txt= pd.DataFrame()
+        
 
     meta_data = txt.head(9)
     data = txt.iloc[9:].reset_index(drop=True)
