@@ -19,7 +19,7 @@ def cargar_datos_con_rangos(ruta_archivo):
 
     #detect file extension
     if "txt" in ruta_archivo.suffix:
-        txt = txt = pd.read_csv(ruta_archivo, encoding='ANSI', sep=None, header=3, engine="python")
+        txt = txt = pd.read_csv(ruta_archivo, encoding='ANSI', sep=None, header=3, engine="python", decimal=",")
     elif "xlsx" in ruta_archivo.suffix:
         txt = pd.read_excel(ruta_archivo, header=3)
     else:
@@ -35,10 +35,11 @@ def cargar_datos_con_rangos(ruta_archivo):
     for _, row in meta_data.iterrows():
         if 'First year' in str(row.iloc[0]):
             for j, col in enumerate(data.columns[1:], 1):
-                first_years[col] = row.iloc[j]
+                first_years[col] = int(row.iloc[j])
         elif 'Last year' in str(row.iloc[0]):
             for j, col in enumerate(data.columns[1:], 1):
-                last_years[col] = row.iloc[j]
+                last_years[col] = int(row.iloc[j])
+
 
     data['Year'] = pd.to_numeric(data['Year'], errors='coerce')
     for col in data.columns[1:]:
