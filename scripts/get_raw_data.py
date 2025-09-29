@@ -30,7 +30,7 @@ def download_zip(url: str) -> BytesIO:
     return BytesIO(zip_data)
 
 
-def unzip(zip_file: BytesIO | str, dir_path: Path) -> None:
+def unzip(zip_file: BytesIO | str | Path, dir_path: Path) -> None:
     """
     Extract a ZIP file into the given directory, ignoring '__MACOSX' metadata.
 
@@ -97,6 +97,12 @@ def main():
 
         raw_dir = data_dir / "raw"
         unzip(zip_file=zip_data, dir_path=raw_dir)
+
+        for file in raw_dir.iterdir():
+            if ".zip" in file.suffix:
+                unzip(file, dir_path=raw_dir)
+                file.unlink()
+
 
         change_data_dir_layout(raw_dir)
 
